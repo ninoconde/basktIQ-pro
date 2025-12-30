@@ -1,0 +1,7 @@
+{
+  "name": "BasketIQ Pro",
+  "description": "Advanced basketball analytics dashboard for coaches featuring Four Factors analysis, momentum tracking, scouting, and AI-powered strategic insights.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
