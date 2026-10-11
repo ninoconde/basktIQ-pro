@@ -205,7 +205,7 @@ def barras_h(datos, ancho=760):
         bx = xc if v >= 0 else xc - largo
         out.append(f'<rect x="{bx:.1f}" y="{by:.1f}" width="{max(largo,1.5):.1f}" height="15" fill="{color}"/>')
         valor = ("+" if v > 0 else "") + _num(v, datos.get("decimales", 0))
-        if v < 0 and xc - largo - 6 < 24:   # no cabe a la izquierda: dentro de la barra
+        if v < 0 and (largo > 34 or xc - largo - 6 < 24):   # dentro de la barra: no pisa las etiquetas
             out.append(_t(xc - largo + 6, by + 12, valor, "start", 10.5, "#fff", 700))
         else:
             out.append(_t(xc + largo + 6 if v >= 0 else xc - largo - 6, by + 12, valor, "start" if v >= 0 else "end", 10.5, color, 700))
