@@ -1,0 +1,18 @@
+{
+  "name": "basktiq",
+  "owner": {
+    "name": "Nino Conde"
+  },
+  "metadata": {
+    "description": "Plugins de Claude Code para entrenadores de baloncesto (BasktIQ Pro)."
+  },
+  "plugins": [
+    {
+      "name": "scouting-baloncesto",
+      "source": "./plugins/scouting-baloncesto",
+      "description": "Scouting de jugadoras y rivales, planes de partido, Cuatro Factores y planificación de entrenamientos.",
+      "version": "0.2.0",
+      "category": "sports"
+    }
+  ]
+}
