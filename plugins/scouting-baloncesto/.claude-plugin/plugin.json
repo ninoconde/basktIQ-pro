@@ -1,0 +1,10 @@
+{
+  "name": "scouting-baloncesto",
+  "version": "0.1.0",
+  "description": "Informes de scouting de jugadoras y rivales, planes de partido y análisis de los Cuatro Factores de Dean Oliver.",
+  "author": {
+    "name": "Nino Conde"
+  },
+  "repository": "https://github.com/ninoconde/basktiq-pro",
+  "keywords": ["baloncesto", "basketball", "scouting", "four-factors", "coaching"]
+}
