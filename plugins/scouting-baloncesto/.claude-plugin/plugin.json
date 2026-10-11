@@ -1,7 +1,7 @@
 {
   "name": "scouting-baloncesto",
-  "version": "0.5.0",
-  "description": "Scouting de jugadoras y rivales, planes de partido, Cuatro Factores, análisis de play-by-play con +/- de quintetos, planificación de entrenamientos e informes en PDF (A4 y móvil).",
+  "version": "0.6.0",
+  "description": "Scouting, planes de partido, Cuatro Factores, play-by-play con +/- de quintetos, entrenamientos con pizarras de pista e informes PDF estilo autopsia (A4 y móvil).",
   "author": {
     "name": "Nino Conde"
   },

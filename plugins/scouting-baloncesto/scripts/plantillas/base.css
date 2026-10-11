@@ -1,36 +1,105 @@
-/* Componentes comunes de los PDFs de BasktIQ (A4 y móvil). */
-:root { --ink:#1b1f24; --muted:#5b6470; --line:#d5dae0; --accent:#1d4f91; --red:#c8102e; --soft:#f3f5f8; --good:#1f7a3a; }
+/* Sistema visual de los informes BasktIQ (estilo "Autopsia"): azul marino, oro y tipografía serif en títulos. */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,700&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --navy: #1c2a4d; --navy-2: #2b3a60; --oro: #c39a2a; --oro-claro: #f6efd9;
+  --azul: #2f5fa8; --rojo: #b8322a; --verde: #1f7a3a;
+  --ink: #1b1f24; --muted: #5b6470; --line: #e1e4ea; --soft: #f5f6f9; --beige: #faf7ef;
+  --serif: "Playfair Display", Georgia, "DejaVu Serif", serif;
+  --sans: Inter, "Helvetica Neue", Arial, "DejaVu Sans", sans-serif;
+}
 * { box-sizing: border-box; }
-body { font-family: "DejaVu Sans", Arial, sans-serif; color: var(--ink); margin: 0; background: #fff; }
-h1 { margin: 0 0 1.5mm; line-height: 1.15; }
-h2 { color: var(--accent); border-bottom: 2px solid var(--accent); padding-bottom: 1mm; page-break-after: avoid; }
-h3 { page-break-after: avoid; }
-p { margin: 0 0 2mm; }
-ul, ol { margin: 0 0 2mm 5mm; padding: 0; }
-li { margin-bottom: 1.5mm; }
-.sub { color: var(--muted); }
-table { width: 100%; border-collapse: collapse; margin: 1mm 0 3mm; }
-tr, .card, .box, .score, .meta { page-break-inside: avoid; }
-th { background: var(--ink); color: #fff; text-align: left; }
+body { font-family: var(--sans); color: var(--ink); margin: 0; background: #fff; }
+p { margin: 0 0 2.5mm; }
+ul, ol { margin: 0 0 2.5mm 5mm; padding: 0; }
+li { margin-bottom: 1.6mm; }
+li::marker { color: var(--oro); font-weight: 700; }
+b, strong { font-weight: 700; }
+
+/* ---------- Portada ---------- */
+.portada { page: portada; position: relative; overflow: hidden; background: var(--navy); color: #fff; break-after: page; }
+.portada svg.pista { position: absolute; inset: 0; width: 100%; height: 100%; }
+.portada .contenido { position: relative; height: 100%; display: flex; flex-direction: column; }
+.portada .arriba { display: flex; justify-content: space-between; gap: 4mm; font-size: 7.5pt; letter-spacing: .18em; text-transform: uppercase; font-weight: 600; color: #d9dde8; }
+.portada .barra { width: 22mm; height: 1.6mm; background: var(--oro); }
+.portada h1 { font-family: var(--serif); font-weight: 800; color: #fff; line-height: 1.02; margin: 0; }
+.portada h1 .oro { color: var(--oro); }
+.portada .lema { color: #d9dde8; line-height: 1.5; }
+.portada .marcador { border: 1px solid var(--oro); border-radius: 3mm; background: rgba(255,255,255,.06); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 4mm; }
+.portada .equipo { font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.portada .equipo small { display: block; font-size: .75em; font-weight: 600; color: #aab3c8; margin-top: 1mm; }
+.portada .equipo.der { text-align: right; }
+.portada .resultado { font-family: var(--serif); font-weight: 800; white-space: nowrap; }
+.portada .cuartos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; text-align: center; }
+.portada .cuartos div { border-top: 1px solid var(--oro); padding-top: 2mm; font-family: var(--serif); font-weight: 700; }
+.portada .cuartos small { display: block; font-family: var(--sans); font-weight: 500; color: #aab3c8; font-size: .7em; }
+.portada .pie { margin-top: auto; display: flex; justify-content: space-between; align-items: flex-end; gap: 6mm; }
+.portada .autor small { display: block; color: var(--oro); font-weight: 700; letter-spacing: .18em; font-size: 7pt; text-transform: uppercase; }
+.portada .autor .nombre { font-family: var(--serif); font-style: italic; font-weight: 700; color: #fff; line-height: 1.2; }
+.portada .autor .cargo { color: #c8cedb; font-size: 8pt; }
+.portada .metodo { text-align: right; color: #aab3c8; font-size: 7.5pt; line-height: 1.5; }
+
+/* ---------- Secciones ---------- */
+.seccion { break-before: page; }
+.antetitulo { color: var(--oro); font-weight: 700; letter-spacing: .18em; text-transform: uppercase; margin: 0 0 1mm; }
+h1 { font-family: var(--serif); font-weight: 800; color: var(--navy); line-height: 1.12; margin: 0 0 3mm; }
+h2 { font-family: var(--sans); font-weight: 700; color: var(--navy); border-left: 1.3mm solid var(--oro); padding-left: 3mm; margin: 5mm 0 2.5mm; break-after: avoid; }
+h3 { font-weight: 700; color: var(--navy); margin: 3mm 0 1.5mm; break-after: avoid; }
+.entradilla { line-height: 1.5; }
+
+/* ---------- KPIs ---------- */
+.kpis { display: grid; gap: 3mm; margin: 3mm 0 4mm; }
+.kpi { border: 1px solid var(--line); border-top: 1.2mm solid var(--navy); border-radius: 2mm; padding: 2.5mm 3mm; break-inside: avoid; }
+.kpi.rojo { border-top-color: var(--rojo); } .kpi.azul { border-top-color: var(--azul); } .kpi.oro { border-top-color: var(--oro); }
+.kpi .valor { font-family: var(--serif); font-weight: 800; color: var(--navy); line-height: 1.05; }
+.kpi.rojo .valor { color: var(--rojo); } .kpi.azul .valor { color: var(--azul); }
+.kpi .etiqueta { font-weight: 700; text-transform: uppercase; letter-spacing: .06em; font-size: .78em; margin-top: 1mm; }
+.kpi .detalle { color: var(--muted); font-size: .8em; margin-top: .5mm; }
+
+/* ---------- Tablas ---------- */
+table { width: 100%; border-collapse: collapse; margin: 1.5mm 0 3mm; }
+tr { break-inside: avoid; }
+th { background: var(--navy); color: #fff; text-align: left; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
 td { border-bottom: 1px solid var(--line); vertical-align: top; }
 tr:nth-child(even) td { background: var(--soft); }
-td.n { text-align: right; white-space: nowrap; }
-.pos { color: var(--good); font-weight: bold; }
-.neg { color: var(--red); font-weight: bold; }
-.box { border-left: 4px solid var(--accent); background: var(--soft); margin: 2mm 0 3mm; }
-.box.aviso { border-left-color: var(--red); background: #fff4f5; }
-.score { display: grid; gap: 2.5mm; margin: 2mm 0 3mm; }
-.score div { background: var(--soft); border-radius: 2mm; padding: 2mm 3mm; color: var(--muted); }
-.score b { display: block; color: var(--ink); }
-.meta div { background: var(--soft); border-radius: 2mm; padding: 1.5mm 2.5mm; }
-.meta b { display: block; color: var(--muted); font-size: 0.8em; text-transform: uppercase; }
-.card { border: 1px solid var(--line); border-radius: 3mm; margin: 0 0 3mm; overflow: hidden; }
-.card .hd { background: var(--ink); color: #fff; padding: 1.8mm 3mm; display: flex; justify-content: space-between; align-items: baseline; gap: 2mm; }
-.card .hd span { font-weight: bold; color: #9fc1ff; white-space: nowrap; }
-.card .bd { padding: 2mm 3mm; }
-.objetivo { background: var(--soft); border-radius: 2mm; padding: 1.5mm 2.5mm; margin-top: 1.5mm; font-weight: bold; }
-.k { color: var(--muted); font-size: 0.8em; font-weight: bold; text-transform: uppercase; }
-.tag { font-size: 0.75em; font-weight: bold; padding: 0.2mm 1.2mm; border-radius: 1mm; background: #e7edf6; color: var(--accent); white-space: nowrap; }
-.tag.suposicion { background: #fdecef; color: var(--red); }
-.salto { page-break-before: always; }
-footer { margin-top: 5mm; font-size: 8pt; color: var(--muted); }
+td.n, th.n { text-align: right; white-space: nowrap; }
+td.c, th.c { text-align: center; }
+td.num { font-family: var(--serif); font-weight: 800; color: var(--oro); font-size: 1.5em; line-height: 1; }
+tr.total td { font-weight: 700; background: var(--beige); }
+.pos { color: var(--azul); font-weight: 700; }
+.neg { color: var(--rojo); font-weight: 700; }
+.nota-tabla { color: var(--muted); font-size: .82em; margin-top: -1.5mm; }
+
+/* ---------- Etiquetas de confianza ---------- */
+.tag { display: inline-block; font-size: .68em; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .5mm 1.8mm; border-radius: 1mm; background: var(--navy); color: #fff; vertical-align: .1em; white-space: nowrap; }
+.tag.probable { background: #fbefc4; color: #7a5a00; border: 1px solid #e6cf7a; }
+.tag.suposicion { background: #fff; color: var(--muted); border: 1px dashed #9aa3b2; }
+
+/* ---------- Bloques ---------- */
+.nota { background: var(--beige); border-left: 1.2mm solid var(--oro); border-radius: 0 2mm 2mm 0; padding: 3mm 4mm; margin: 3mm 0; break-inside: avoid; }
+.aviso { background: #fdf1f0; border-left: 1.2mm solid var(--rojo); border-radius: 0 2mm 2mm 0; padding: 3mm 4mm; margin: 3mm 0; break-inside: avoid; }
+.fases { display: grid; gap: 3mm; margin: 3mm 0; }
+.fase { border: 1px solid var(--line); border-left: 1.2mm solid var(--rojo); border-radius: 2mm; padding: 3mm; break-inside: avoid; }
+.fase.azul { border-left-color: var(--azul); }
+.fase .titulo { font-weight: 700; letter-spacing: .08em; text-transform: uppercase; font-size: .8em; }
+.fase .cifra { font-family: var(--serif); font-weight: 800; color: var(--rojo); font-size: 1.9em; line-height: 1.1; }
+.fase.azul .cifra { color: var(--azul); }
+.card { border: 1px solid var(--line); border-radius: 2.5mm; margin: 0 0 3mm; overflow: hidden; break-inside: avoid; }
+.card .hd { background: var(--navy); color: #fff; padding: 2mm 3mm; display: flex; justify-content: space-between; align-items: baseline; gap: 2mm; font-weight: 700; }
+.card .hd span { color: var(--oro); white-space: nowrap; }
+.card .bd { padding: 2.5mm 3mm; }
+.objetivo { background: var(--oro-claro); border-radius: 1.5mm; padding: 1.5mm 2.5mm; margin-top: 1.5mm; font-weight: 700; }
+.grafico { border: 1px solid var(--line); border-radius: 2.5mm; padding: 3mm; margin: 3mm 0; break-inside: avoid; }
+.grafico svg { width: 100%; height: auto; display: block; }
+.grafico .leyenda { color: var(--muted); font-size: .8em; border-top: 1px solid var(--line); padding-top: 2mm; margin-top: 2mm; }
+.firma { border-top: 1px solid var(--oro); margin-top: 8mm; padding-top: 4mm; text-align: right; }
+.firma .nombre { font-family: var(--serif); font-style: italic; font-weight: 700; color: var(--navy); font-size: 22pt; }
+.firma small { display: block; color: var(--muted); letter-spacing: .14em; text-transform: uppercase; font-size: 7.5pt; }
+.salto { break-before: page; }
+
+/* Fichas de ejercicio con pizarra */
+.card .grafico { border: 0; padding: 0; margin: 0 0 2mm; }
+.card .grafico svg { border-radius: 1.5mm; }
+.k { color: var(--muted); font-size: .75em; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.ejercicio .k { display: block; margin-top: 1.5mm; }
+.grafico.leyenda-pizarra svg { max-width: 120mm; }

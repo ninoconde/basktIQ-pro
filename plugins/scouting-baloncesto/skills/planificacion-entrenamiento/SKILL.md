@@ -38,6 +38,13 @@ Bloques típicos: activación (10–15') · técnica (15–20') · situaciones r
 
 Termina con **Qué observar** (2–3 indicadores para evaluar si el objetivo se ha cumplido).
 
+## Pizarras
+
+Cada ejercicio con desplazamientos lleva su **pizarra de media pista** (al exportar con `/pdf`): posición inicial de cada jugador, defensores, balón, conos y las acciones numeradas en orden (movimiento, pase, bote, bloqueo, tiro). Reglas:
+- Una idea por pizarra: si el ejercicio tiene dos fases, dos pizarras.
+- Las flechas no deben tapar a los jugadores ni cruzarse sin necesidad; para ejercicios bajo el aro, usa el zoom.
+- El que lanza o pasa en un ejercicio individual se marca como `T` (tirador o entrenador).
+
 ## Microciclo semanal
 
 Tabla por día: objetivo, intensidad (baja/media/alta), minutos, bloques. Coloca la sesión más intensa lejos del partido.

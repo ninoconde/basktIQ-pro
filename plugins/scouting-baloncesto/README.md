@@ -45,8 +45,12 @@ python3 plugins/scouting-baloncesto/scripts/quintetos.py plugins/scouting-balonc
 
 ## PDFs (A4 y móvil)
 
-`scripts/a_pdf.py` convierte el cuerpo HTML de un informe en PDF usando Chrome, Chromium o Edge sin ventana (si no lo encuentra, indica la ruta en `BASKTIQ_CHROME`). Las plantillas están en `scripts/plantillas/`: `base.css` (componentes), `a4.css` (imprimir) y `movil.css` (página de 100 × 200 mm, letra grande). Con `.solo-a4` / `.solo-movil` un mismo contenido sirve para los dos formatos.
+`scripts/a_pdf.py` convierte el cuerpo HTML de un informe en PDF usando Chrome, Chromium o Edge sin ventana (si no lo encuentra, indica la ruta en `BASKTIQ_CHROME`). Estilo "autopsia": portada azul marino y oro, títulos en Playfair Display (se descarga de Google Fonts; sin conexión se usa una serif del sistema), cabecera y "página X / Y".
+
+- `scripts/plantillas/`: `base.css` (componentes), `a4.css` (imprimir) y `movil.css` (100 × 200 mm, letra grande). Con `.solo-a4` / `.solo-movil` un mismo contenido sirve para los dos formatos.
+- `scripts/graficos.py`: gráficos SVG sin dependencias (`barras`, `cascada`, `evolucion`, `barras_h`, `on_off`) y **pizarras de media pista FIBA** (`pizarra`, `leyenda_pizarra`) con jugadores, defensores, balón, conos y flechas de movimiento, pase, bote, bloqueo y tiro. Cada gráfico se dibuja a la medida de cada formato.
+- Ejemplos: `scripts/ejemplos/informe-ualbany-cornell.html` (informe de partido) y `scripts/ejemplos/sesion-rebote-ofensivo.html` (sesión con pizarras).
 
 ```
-python3 plugins/scouting-baloncesto/scripts/a_pdf.py plugins/scouting-baloncesto/scripts/ejemplos/informe-ualbany-cornell.html --salida informes
+python3 plugins/scouting-baloncesto/scripts/a_pdf.py plugins/scouting-baloncesto/scripts/ejemplos/informe-ualbany-cornell.html --salida informes --cabecera "Anatomía de un 47–54 · Cornell – UAlbany" --autor "Nino Conde"
 ```

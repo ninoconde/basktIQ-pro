@@ -1,218 +1,200 @@
 <!--
-  Ejemplo de contenido para a_pdf.py: solo el cuerpo del informe.
-  Componentes: .box / .box.aviso, .score, .meta, .cols, .card (.hd/.bd), .objetivo,
-  .tag / .tag.suposicion, td.n, .pos / .neg, .salto, .salto-a4, .salto-movil,
-  .solo-a4 / .solo-movil para tablas anchas que en el móvil van mejor como tarjetas.
+  Ejemplo de contenido para a_pdf.py (solo el cuerpo del informe). Estructura "autopsia":
+  portada · resumen ejecutivo · cronología · cuarto a cuarto · cuatro factores y margen ·
+  scouting · quintetos y on/off · plan de acción · método y límites.
+  Componentes: .portada, .seccion + .antetitulo + h1, .kpis/.kpi(.rojo/.azul/.oro), .tag(.probable/.suposicion),
+  .nota, .aviso, .fases/.fase(.azul), .card, .grafico[data-tipo][data-datos], td.num/td.n, .pos/.neg,
+  .cols, .solo-a4/.solo-movil, .firma.
+  Generar: python3 a_pdf.py este.html --cabecera "Anatomía de un 47–54 · Cornell – UAlbany" --autor "Nino Conde"
 -->
-<h1>Informe de partido y scouting de UAlbany</h1>
-<p class="sub">Cornell (2-5) en UAlbany (5-0) · 23/11/2024 · Broadview Center, Albany (NY) · Fuente: box score y jugada a jugada oficiales (PDF)</p>
+<div class="portada"><div class="contenido">
+  <div class="arriba"><span>Informe de análisis · Baloncesto</span><span>NCAA D-I femenina · 2024/25</span></div>
+  <div class="barra"></div>
+  <h1>Anatomía<br>de un <span class="oro">47–54</span></h1>
+  <p class="lema">Por qué perdió Cornell en Albany y cómo juega UAlbany: las causas, los quintetos y el plan para enfrentarse a ellas.</p>
+  <div class="marcador">
+    <div class="equipo">Cornell<small>Ivy League · 2-5</small></div>
+    <div class="resultado">47 – 54</div>
+    <div class="equipo der">UAlbany<small>America East · 23/11/2024</small></div>
+  </div>
+  <div class="cuartos"><div>10–9<small>Q1</small></div><div>6–11<small>Q2</small></div><div>15–14<small>Q3</small></div><div>16–20<small>Q4</small></div></div>
+  <div class="pie">
+    <div class="autor"><small>Elaborado por</small><div class="nombre">Nino Conde</div><div class="cargo">Técnico Superior en Baloncesto</div></div>
+    <div class="metodo">Box score y jugada a jugada oficiales<br>Confianza etiquetada en cada afirmación</div>
+  </div>
+</div></div>
 
-<div class="box aviso"><b>Avisos:</b> este partido <b>no es de Ana</b> (esa temporada estaba en Siena). Es de noviembre de 2024: la plantilla actual de UAlbany probablemente ha cambiado. Sirve para conocer su estilo y como modelo de informe; antes de usarlo contra la UAlbany de hoy hay que comprobar su plantilla de esta temporada.</div>
-
-<div class="score">
-  <div>Cornell<b>47</b>10 · 6 · 15 · 16</div>
-  <div>UAlbany<b>54</b>9 · 11 · 14 · 20</div>
-  <div>Empates / cambios de líder<b>7 / 5</b>Partido igualado hasta el final</div>
+<div class="seccion">
+<p class="antetitulo">Resumen ejecutivo</p>
+<h1>Cornell perdió el balón cuando más lo necesitaba</h1>
+<p class="entradilla">Cornell perdió 47–54 en un partido con 7 empates y 5 cambios de líder. Tiró igual o mejor que UAlbany en el segundo tiempo, pero <b>21 pérdidas</b> —y las <b>4 últimas posesiones sin tirar</b>, con 47–49 a falta de 2:04— le quitaron el partido.</p>
+<div class="kpis">
+  <div class="kpi"><div class="valor">47–54</div><div class="etiqueta">Marcador final</div><div class="detalle">7 empates · 5 cambios de líder</div></div>
+  <div class="kpi rojo"><div class="valor">21</div><div class="etiqueta">Pérdidas de Cornell</div><div class="detalle">29,7 % de sus posesiones</div></div>
+  <div class="kpi rojo"><div class="valor">7/20</div><div class="etiqueta">Bandejas de Cornell</div><div class="detalle">13 falladas bajo el aro</div></div>
+  <div class="kpi azul"><div class="valor">0/4</div><div class="etiqueta">Tiros en el cierre</div><div class="detalle">4 posesiones, 4 pérdidas</div></div>
 </div>
 
-<h2>1. Resumen</h2>
-<ol>
-  <li><span class="tag">Certeza</span> Cornell perdió por las <b>pérdidas</b>: 21 frente a 16. Con 47-49 a falta de 2:04, sus <b>últimas 4 posesiones acabaron en pérdida sin tirar</b>; UAlbany cerró 7-0, todo desde el tiro libre.</li>
-  <li><span class="tag">Certeza</span> Cornell <b>falló 13 de 20 bandejas</b>; 7 de los 9 tiros que anotó bajo el aro se los fallaron ellas cerca de la canasta.</li>
-  <li><span class="tag">Certeza</span> UAlbany ganó con <b>Kayla Cooper dentro</b> (24 puntos, 9 de 12) y <b>3 triples de Meghan Huerter en 1:27</b> del último cuarto, saliendo del banquillo.</li>
-</ol>
-
-<h2>2. Cuatro Factores</h2>
-<table>
-  <thead><tr><th></th><th>Cornell</th><th>UAlbany</th><th>Ventaja</th></tr></thead>
+<h2>Las causas, ordenadas por peso</h2>
+<div class="solo-a4"><table>
+  <thead><tr><th>#</th><th>Causa</th><th>Evidencia</th><th>Peso</th><th>Confianza</th></tr></thead>
   <tbody>
-    <tr><td>eFG%</td><td class="n">44,3 %</td><td class="n">46,8 %</td><td>UAlbany, poca</td></tr>
-    <tr><td>TOV%</td><td class="n"><b>29,7 %</b></td><td class="n">23,4 %</td><td><b>UAlbany, decisiva</b></td></tr>
-    <tr><td>ORB%</td><td class="n">14,8 %</td><td class="n">20,0 %</td><td>UAlbany</td></tr>
-    <tr><td>FTr (TL/TCI)</td><td class="n">0,182</td><td class="n">0,213</td><td>UAlbany</td></tr>
-    <tr><td>TS%</td><td class="n">47,3 %</td><td class="n">51,6 %</td><td>UAlbany</td></tr>
-    <tr><td>Posesiones</td><td class="n">66,7</td><td class="n">62,3</td><td></td></tr>
-    <tr><td>Puntos por 100 posesiones</td><td class="n"><b>70,4</b></td><td class="n"><b>86,7</b></td><td>UAlbany +16,3</td></tr>
+    <tr><td class="num">1</td><td><b>Pérdidas</b></td><td>21 contra 16; UAlbany sacó 13 puntos de ellas (Cornell, 8).</td><td class="neg">−5 pts tras pérdida</td><td><span class="tag">Certeza</span></td></tr>
+    <tr><td class="num">2</td><td><b>El cierre</b></td><td>Desde el 47–49 (2:04): 4 pérdidas seguidas, 0 tiros. UAlbany 5 de 6 en libres.</td><td class="neg">−5 parcial</td><td><span class="tag">Certeza</span></td></tr>
+    <tr><td class="num">3</td><td><b>Finalización cerca del aro</b></td><td>7 de 20 en bandejas; 4 tapones de UAlbany (3 de Falcao).</td><td class="neg">−9,6 acierto 2P</td><td><span class="tag">Certeza</span></td></tr>
+    <tr><td class="num">4</td><td><b>Segundo cuarto</b></td><td>1 de 11 en tiros de campo; 6 puntos en 10 minutos.</td><td class="neg">−5</td><td><span class="tag">Certeza</span></td></tr>
+    <tr><td class="num">5</td><td><b>Triples de Huerter</b></td><td>3 triples en 1:27 del último cuarto (38–38 → 41–47).</td><td class="neg">−6 parcial</td><td><span class="tag">Certeza</span></td></tr>
+  </tbody>
+</table></div>
+<div class="solo-movil">
+  <div class="card"><div class="hd">1 · Pérdidas<span>−5</span></div><div class="bd">21 contra 16; 13 puntos de UAlbany tras pérdida. <span class="tag">Certeza</span></div></div>
+  <div class="card"><div class="hd">2 · El cierre<span>−5</span></div><div class="bd">Desde 47–49: 4 pérdidas seguidas, 0 tiros. <span class="tag">Certeza</span></div></div>
+  <div class="card"><div class="hd">3 · Bandejas<span>−9,6</span></div><div class="bd">7 de 20; 4 tapones de UAlbany. <span class="tag">Certeza</span></div></div>
+  <div class="card"><div class="hd">4 · Segundo cuarto<span>−5</span></div><div class="bd">1 de 11 en tiros de campo. <span class="tag">Certeza</span></div></div>
+  <div class="card"><div class="hd">5 · Triples de Huerter<span>−6</span></div><div class="bd">3 triples en 1:27 del último cuarto. <span class="tag">Certeza</span></div></div>
+</div>
+<p class="nota-tabla">«Peso» se mide distinto en cada fila y las filas se solapan: no se suman. La descomposición que sí suma exactamente −7 está en la sección de Cuatro Factores.</p>
+
+<h2>Lo que sí funcionó en Cornell</h2>
+<ul>
+  <li>Triples: 5 de 13 (38,5 %) frente a 6 de 23 de UAlbany. <span class="tag">Certeza</span></li>
+  <li>Último cuarto: 6 de 9 en tiros de campo y 3 de 3 en triples. <span class="tag">Certeza</span></li>
+  <li>Pape: 18 puntos y 9 rebotes; la única que generaba ventaja con regularidad. <span class="tag probable">Probable</span></li>
+</ul>
+<div class="nota"><b>Cómo leer las etiquetas:</b> <span class="tag">Certeza</span> dato directo del acta o cálculo exacto. <span class="tag probable">Probable</span> inferencia fuerte o dato reconstruido del jugada a jugada. <span class="tag suposicion">Suposición</span> hipótesis del analista, no demostrable con estos datos.</div>
+</div>
+
+<div class="seccion">
+<p class="antetitulo">Cronología</p>
+<h1>Cómo se desarrolló el partido</h1>
+<div class="grafico" data-tipo="evolucion" data-datos='{"puntos": [[0.25, 3], [1.28, 1], [2.17, 3], [2.5, 1], [2.82, 3], [3.92, 5], [4.27, 2], [4.68, 3], [8.82, 1], [11.68, 3], [12.03, 1], [14.75, -1], [15.03, 1], [15.87, -1], [16.82, -3], [18.78, -1], [19.08, -4], [20.13, -2], [20.47, -4], [21.8, -1], [22.23, -4], [22.58, -2], [23.02, 0], [23.8, 2], [24.87, 4], [25.33, 2], [27.1, 0], [27.12, -1], [28.12, -3], [29.17, -1], [29.48, -3], [30.55, 0], [30.97, -2], [32.02, 0], [32.33, -2], [33.57, 0], [33.93, -3], [34.22, 0], [34.67, -3], [35.38, -6], [36.58, -4], [37.08, -6], [37.38, -3], [37.93, -2], [39.52, -3], [39.58, -5], [39.83, -7]], "propio": "Cornell", "rival": "UAlbany", "anotaciones": [[5.92, 5, "9-4: máxima ventaja de Cornell"], [25.4, 4, "29-25 tras el 8-0"], [37.96, -2, "47-49 a 2:04: 4 pérdidas seguidas"], [40, -7, "Final 47-54"]], "tiempos_muertos": {"propio": [27.17, 35.53, 39.12, 39.58], "rival": [23.9, 39.38, 39.75]}}'><p class="leyenda">Margen de Cornell menos UAlbany durante los 40 minutos. Triángulos: tiempos muertos (azul: Cornell; dorado: UAlbany).</p></div>
+<div class="fases">
+  <div class="fase azul"><div class="titulo">Fase 1 · Q1</div><div class="cifra">+1</div>Cornell llega a mandar 9–4. Las defensas dominan y Cornell falla 6 bandejas. <span class="tag">Certeza</span></div>
+  <div class="fase"><div class="titulo">Fase 2 · Q2</div><div class="cifra">−5</div>1 de 11 en tiros de campo: 7 minutos con solo 2 tiros libres. Al descanso, 16–20. <span class="tag">Certeza</span></div>
+  <div class="fase azul"><div class="titulo">Fase 3 · Q3</div><div class="cifra">+1</div>Parcial 8–0 (21–25 → 29–25), pero UAlbany responde 7–0 con 4 pérdidas de Cornell. <span class="tag">Certeza</span></div>
+  <div class="fase"><div class="titulo">Fase 4 · Q4</div><div class="cifra">−4</div>Huerter rompe el 38–38 con tres triples y Cornell cierra con 4 pérdidas seguidas. <span class="tag">Certeza</span></div>
+</div>
+</div>
+
+<div class="seccion">
+<p class="antetitulo">Cuarto a cuarto</p>
+<h1>Cuatro cuartos, cuatro partidos distintos</h1>
+<div class="grafico" data-tipo="barras" data-datos='{"nombres": ["Cornell", "UAlbany"], "paneles": [{"titulo": "Puntos", "categorias": ["Q1", "Q2", "Q3", "Q4"], "series": [[10, 6, 15, 16], [9, 11, 14, 20]]}, {"titulo": "eFG %", "categorias": ["Q1", "Q2", "Q3", "Q4"], "series": [[32, 9, 65, 83], [35, 30, 59, 68]]}, {"titulo": "Pérdidas", "categorias": ["Q1", "Q2", "Q3", "Q4"], "series": [[4, 4, 7, 6], [5, 3, 5, 3]]}]}'><p class="leyenda">Puntos, eFG % y pérdidas por cuarto. Azul: Cornell; dorado: UAlbany.</p></div>
+<table>
+  <thead><tr><th>Cuarto</th><th class="c">Marcador</th><th class="c">Tiros de campo C / U</th><th class="c">Pérdidas C / U</th></tr></thead>
+  <tbody>
+    <tr><td>Q1</td><td class="c">10–9</td><td class="c">4/14 · 3/10</td><td class="c">4 / 5</td></tr>
+    <tr><td>Q2</td><td class="c">6–11</td><td class="c"><b>1/11</b> · 4/15</td><td class="c">4 / 3</td></tr>
+    <tr><td>Q3</td><td class="c">15–14</td><td class="c">6/10 · 6/11</td><td class="c"><b>7</b> / 5</td></tr>
+    <tr><td>Q4</td><td class="c">16–20</td><td class="c">6/9 · 6/11</td><td class="c"><b>6</b> / 3</td></tr>
   </tbody>
 </table>
-<p>UAlbany ganó los cuatro factores, pero el que decidió fue el de las pérdidas: casi 3 de cada 10 posesiones de Cornell acabaron sin tiro, y UAlbany sacó 13 puntos de ellas (Cornell, 8). Cornell tiró mejor de tres (5 de 13 frente a 6 de 23), pero no lo compensó. Con solo 4 rebotes ofensivos, Cornell no anotó ninguna canasta de segunda oportunidad.</p>
+<div class="nota"><b>Patrón:</b> Cornell tiró mejor que UAlbany en el segundo tiempo (12 de 19 frente a 12 de 22) y aun así lo perdió 31–34. La diferencia no estuvo en el acierto, sino en las <b>13 pérdidas</b> de esos 20 minutos. <span class="tag">Certeza</span></div>
+</div>
 
-<h2>3. Por cuartos</h2>
-<div class="solo-a4"><table>
-  <thead><tr><th>Cuarto</th><th>Cornell</th><th>UAlbany</th><th>Tiros de campo C / U</th><th>Pérdidas C / U</th><th>Clave</th></tr></thead>
-  <tbody>
-    <tr><td>1º</td><td class="n">10</td><td class="n">9</td><td>4 de 14 / 3 de 10</td><td>4 / 5</td><td>Defensas mandan; Cornell falla 6 bandejas</td></tr>
-    <tr><td>2º</td><td class="n">6</td><td class="n">11</td><td><b>1 de 11</b> / 4 de 15</td><td>4 / 3</td><td>Sequía de Cornell</td></tr>
-    <tr><td>3º</td><td class="n">15</td><td class="n">14</td><td>6 de 10 / 6 de 11</td><td><b>7</b> / 5</td><td>Cornell se pone 29-25 y lo devuelve con pérdidas</td></tr>
-    <tr><td>4º</td><td class="n">16</td><td class="n">20</td><td>6 de 9 / 6 de 11</td><td><b>6</b> / 3</td><td>Triples de Huerter y cierre de Cornell sin tirar</td></tr>
-  </tbody>
-</table></div>
-<div class="solo-movil"><div class="card"><div class="hd"><b>1º · 10-9</b><span>Cornell</span></div><div class="bd">Tiros de campo 4/14 – 3/10 · Pérdidas 4 – 5<br>Defensas mandan; Cornell falla 6 bandejas.</div></div>
-<div class="card"><div class="hd"><b>2º · 6-11</b><span>UAlbany</span></div><div class="bd">Tiros de campo <b>1/11</b> – 4/15 · Pérdidas 4 – 3<br>Sequía de Cornell.</div></div>
-<div class="card"><div class="hd"><b>3º · 15-14</b><span>Cornell</span></div><div class="bd">Tiros de campo 6/10 – 6/11 · Pérdidas <b>7</b> – 5<br>Cornell se pone 29-25 y lo devuelve con pérdidas.</div></div>
-<div class="card"><div class="hd"><b>4º · 16-20</b><span>UAlbany</span></div><div class="bd">Tiros de campo 6/9 – 6/11 · Pérdidas <b>6</b> – 3<br>Triples de Huerter y cierre de Cornell sin tirar.</div></div></div>
-
-<h2>4. Parciales clave</h2>
-<div class="solo-a4"><table>
-  <thead><tr><th>Momento</th><th>Parcial</th><th>Causa</th></tr></thead>
-  <tbody>
-    <tr><td>2º, 8:19 → 1:13</td><td>Cornell solo 2 TL en 7 min</td><td>1 de 11 en el cuarto y 2 libres técnicos fallados</td></tr>
-    <tr><td>3º, 7:46 → 5:08</td><td><b>Cornell 8-0</b> (21-25 → 29-25)</td><td>Jackson anota dos tiros a media distancia tras pase de Kilgoe; Kaus anota dentro</td></tr>
-    <tr><td>3º, 5:08 → 1:53</td><td><b>UAlbany 7-0</b> (29-25 → 29-32)</td><td>4 pérdidas de Cornell; robo de Falcao, canasta y tiro libre de Cooper</td></tr>
-    <tr><td>4º, 6:04 → 4:37</td><td><b>UAlbany 9-3</b> (38-38 → 41-47)</td><td>3 triples de Huerter; el último tras pérdida de Kilgoe</td></tr>
-    <tr><td>4º, 2:04 → final</td><td><b>UAlbany 5-0</b> (47-49 → 47-54)</td><td>4 pérdidas seguidas de Cornell; Cooper 5 de 6 en libres</td></tr>
-  </tbody>
-</table></div>
-<div class="solo-movil"><div class="card"><div class="hd"><b>Cornell 8-0</b><span>3º 7:46–5:08</span></div><div class="bd">21-25 → 29-25. Jackson anota dos tiros a media distancia y Kaus dentro.</div></div>
-<div class="card"><div class="hd"><b>UAlbany 7-0</b><span>3º 5:08–1:53</span></div><div class="bd">29-25 → 29-32. 4 pérdidas de Cornell; robo de Falcao y canasta más tiro libre de Cooper.</div></div>
-<div class="card"><div class="hd"><b>UAlbany 9-3</b><span>4º 6:04–4:37</span></div><div class="bd">38-38 → 41-47. 3 triples de Huerter.</div></div>
-<div class="card"><div class="hd"><b>UAlbany 5-0</b><span>4º 2:04–final</span></div><div class="bd">47-49 → 47-54. 4 pérdidas seguidas de Cornell; Cooper 5/6 en libres.</div></div></div>
-
-<h2>5. Tiempos muertos</h2>
-<div class="solo-a4"><table>
-  <thead><tr><th>Tiempo muerto</th><th>Marcador</th><th>Después</th><th>¿Funcionó?</th></tr></thead>
-  <tbody>
-    <tr><td>UAlbany, 3º 6:06</td><td>27-25</td><td>Cambia a tres jugadoras; termina el cuarto ganando 9-4</td><td>Probable que sí</td></tr>
-    <tr><td>Cornell, 3º 2:50</td><td>29-30</td><td>Termina el cuarto perdiendo 2-4</td><td>No</td></tr>
-    <tr><td>Cornell, 4º 4:28</td><td>41-47</td><td>Gana 6-2 hasta el 2:04, se pone a 2</td><td>Probable que sí</td></tr>
-    <tr><td>Cornell, 4º 0:53</td><td>47-49</td><td>Pérdida de Kilgoe en la primera posesión</td><td><b>No</b></td></tr>
-  </tbody>
-</table></div>
-<div class="solo-movil"><table>
-  <thead><tr><th>Quién · cuándo</th><th>Después</th></tr></thead>
-  <tbody>
-    <tr><td>UAlbany 3º 6:06</td><td>9-4 a favor <span class="pos">✓</span></td></tr>
-    <tr><td>Cornell 3º 2:50</td><td>2-4 en contra <span class="neg">✗</span></td></tr>
-    <tr><td>Cornell 4º 4:28</td><td>6-2 a favor <span class="pos">✓</span></td></tr>
-    <tr><td>Cornell 4º 0:53</td><td>Pérdida inmediata <span class="neg">✗</span></td></tr>
-  </tbody>
-</table></div>
-<p class="sub">Con tan pocas posesiones entre tiempos muertos, solo indican una tendencia.</p>
-
-<div class="salto"></div>
-<h1>Scouting de UAlbany</h1>
-<p class="sub">Basado en un solo partido: es un indicio, no un patrón.</p>
-
-<h2>6. Identidad</h2>
+<div class="seccion">
+<p class="antetitulo">Análisis de equipo</p>
+<h1>Cuatro Factores: UAlbany ganó los cuatro</h1>
 <table>
-  <thead><tr><th></th><th>Ataque UAlbany</th><th>Defensa UAlbany (lo que concede)</th></tr></thead>
+  <thead><tr><th>Métrica</th><th class="n">Cornell</th><th class="n">UAlbany</th><th>Ventaja</th></tr></thead>
   <tbody>
-    <tr><td>Puntos por 100 posesiones</td><td class="n">86,7</td><td class="n">70,4</td></tr>
-    <tr><td>eFG%</td><td class="n">46,8 %</td><td class="n">44,3 %</td></tr>
-    <tr><td>TOV%</td><td class="n">23,4 %</td><td class="n"><b>29,7 %</b> provocadas</td></tr>
-    <tr><td>ORB%</td><td class="n">20,0 %</td><td class="n">Rival 14,8 %</td></tr>
+    <tr><td>eFG %</td><td class="n">44,3</td><td class="n">46,8</td><td>UAlbany, poca</td></tr>
+    <tr><td>TOV %</td><td class="n neg">29,7</td><td class="n">23,4</td><td><b>UAlbany, decisiva</b></td></tr>
+    <tr><td>Rebote ofensivo %</td><td class="n">14,8</td><td class="n">20,0</td><td>UAlbany</td></tr>
+    <tr><td>Tiros libres / tiros de campo</td><td class="n">0,182</td><td class="n">0,213</td><td>UAlbany</td></tr>
+    <tr><td>Posesiones estimadas</td><td class="n">66,7</td><td class="n">62,3</td><td>—</td></tr>
+    <tr><td>Puntos por 100 posesiones</td><td class="n">70,4</td><td class="n">86,7</td><td>UAlbany +16,3</td></tr>
   </tbody>
 </table>
-<p><b>Gana defendiendo:</b> provoca pérdidas (8 robos), protege el aro (4 tapones, 3 de Falcao) y cierra su rebote. En ataque es flojo.</p>
+<h2>Dónde están exactamente los 7 puntos</h2>
+<div class="grafico" data-tipo="cascada" data-datos='{"pasos": [["2P: volumen\n(7 intentos más)", 7.6], ["2P: acierto\n(38,7 % vs 54,2 %)", -9.6], ["Triples: volumen\n(10 intentos menos)", -7.8], ["Triples: acierto\n(38,5 % vs 26,1 %)", 4.8], ["Tiros libres\n(8 vs 10)", -2]], "total": "Margen\nfinal"}'><p class="leyenda">Cada barra aísla una causa: volumen (cuántos tiros) y acierto, en tiros de 2 y de 3, y tiros libres. La suma es exactamente −7.</p></div>
+<p>Cornell lanzó <b>7 tiros de 2 más</b> que UAlbany (+7,6 puntos con el acierto de UAlbany), pero los convirtió mucho peor (38,7 % frente a 54,2 %: −9,6). En triples, UAlbany tiró 10 más (−7,8) con peor acierto (+4,8 para Cornell). <span class="tag">Certeza</span></p>
+<div class="nota"><b>Corrección del enfoque:</b> Cornell no perdió por tirar mal de lejos, sino por <b>no terminar cerca del aro</b> y por <b>no llegar a tirar</b> (21 pérdidas). Se corrige con finalización contra contacto y con la salida de presión, no con más tiro exterior. <span class="tag probable">Probable</span></div>
+</div>
 
+<div class="seccion">
+<p class="antetitulo">Scouting del rival</p>
+<h1>Cómo juega UAlbany</h1>
+<div class="kpis tres">
+  <div class="kpi"><div class="valor">86,7</div><div class="etiqueta">Pts/100 en ataque</div><div class="detalle">Ataque flojo</div></div>
+  <div class="kpi azul"><div class="valor">70,4</div><div class="etiqueta">Pts/100 concedidos</div><div class="detalle">Gana defendiendo</div></div>
+  <div class="kpi oro"><div class="valor">0/12</div><div class="etiqueta">Triples sin Huerter ni Donovan</div><div class="detalle">Se puede ayudar desde ellas</div></div>
+</div>
 <div class="cols">
 <div>
-<h2>7. Jugadoras clave</h2>
+<h2>Jugadoras clave</h2>
 <ul>
-  <li><b>Kayla Cooper (interior):</b> 24 pts, 9 de 12, 6 de 8 TL, 7 reb. No tira de tres; todo bajo el aro o al contraataque. Débil: <b>6 pérdidas</b>.</li>
-  <li><b>Meghan Huerter (tiradora, banquillo):</b> 3 de 6 en triples, los 3 aciertos en 1:27. Tiradora de rachas.</li>
-  <li><b>Kaci Donovan (exterior):</b> 13 pts, 3 de 5 en triples. Segunda tiradora fiable.</li>
+  <li><b>Kayla Cooper (interior):</b> 24 pts, 9 de 12, 6 de 8 TL, 7 reb. No tira de tres. Débil: <b>6 pérdidas</b>. <span class="tag">Certeza</span></li>
+  <li><b>Meghan Huerter (tiradora, banquillo):</b> 3 de 6 en triples, los tres en 1:27. Tiradora de rachas. <span class="tag">Certeza</span></li>
+  <li><b>Kaci Donovan (exterior):</b> 13 pts, 3 de 5 en triples. <span class="tag">Certeza</span></li>
 </ul>
 </div>
 <div>
-<h2>8. Cómo atacan</h2>
+<h2>Cómo atacan</h2>
 <ul>
-  <li>Casi la <b>mitad de sus tiros son triples</b> (23 de 47).</li>
-  <li><b>Fuera de Huerter y Donovan: 0 de 12</b> en triples (Phillips 0/4, Tomasetti 0/3, Hill 0/2, Drake 0/2, Falcao 0/1).</li>
-  <li>Poco pase: 8 asistencias para 19 canastas. Balón a Cooper o uno contra uno.</li>
-  <li>Casi no corren: 3 puntos al contraataque, 2 de segunda oportunidad.</li>
+  <li>Casi la <b>mitad de sus tiros son triples</b> (23 de 47). <span class="tag">Certeza</span></li>
+  <li>Poco pase: 8 asistencias para 19 canastas; balón a Cooper o uno contra uno. <span class="tag probable">Probable</span></li>
+  <li>Casi no corren: 3 puntos al contraataque, 2 de segunda oportunidad. <span class="tag">Certeza</span></li>
 </ul>
 </div>
 </div>
+<div class="aviso"><b>Muestra de un solo partido y de 2024.</b> La plantilla actual de UAlbany habrá cambiado: comprobarla antes de usar este scouting. <span class="tag">Certeza</span></div>
+</div>
 
-<h2>9. +/- por quintetos (más de 2 minutos juntas)</h2>
-<table>
-  <thead><tr><th>Min</th><th>Quinteto</th><th>A favor – en contra</th><th>+/-</th></tr></thead>
-  <tbody>
-    <tr><td>6:24</td><td><b>Inicial:</b> Cooper, Donovan, Tomasetti, Phillips, Hill</td><td class="n">7-16</td><td class="n neg">−9</td></tr>
-    <tr><td>5:06</td><td>Cooper, Donovan, Tomasetti, Drake, Huerter</td><td class="n">9-9</td><td class="n">0</td></tr>
-    <tr><td>2:45</td><td><b>Cooper, Tomasetti, Drake, Falcao, Huerter</b></td><td class="n">5-0</td><td class="n pos">+5</td></tr>
-    <tr><td>2:39</td><td>Cooper, Donovan, Tomasetti, Drake, Phillips</td><td class="n">2-2</td><td class="n">0</td></tr>
-    <tr><td>2:32</td><td>Cooper, Donovan, Tomasetti, Phillips, Huerter</td><td class="n">3-3</td><td class="n">0</td></tr>
-    <tr><td>2:24</td><td>Cooper, Tomasetti, Phillips, Falcao, Huerter</td><td class="n">2-5</td><td class="n neg">−3</td></tr>
-    <tr><td>2:20</td><td>Cooper, Tomasetti, Phillips, Falcao, Hill</td><td class="n">2-0</td><td class="n pos">+2</td></tr>
-    <tr><td>2:11</td><td>Cooper, Donovan, Tomasetti, Phillips, Borrellas</td><td class="n">5-4</td><td class="n pos">+1</td></tr>
-  </tbody>
-</table>
-
+<div class="seccion">
+<p class="antetitulo">Rotaciones y quintetos</p>
+<h1>Quintetos y on/off de UAlbany</h1>
+<div class="grafico" data-tipo="barras_h" data-datos='{"items": [["Cooper · Tomasetti · Drake · Falcao · Huerter", 5, "2:45 · 5-0"], ["Cooper · Tomasetti · Phillips · Falcao · Hill", 2, "2:20 · 2-0"], ["Cooper · Donovan · Tomasetti · Phillips · Borrellas", 1, "2:11 · 5-4"], ["Cooper · Donovan · Tomasetti · Drake · Huerter", 0, "5:06 · 9-9"], ["Cooper · Donovan · Tomasetti · Drake · Phillips", 0, "2:39 · 2-2"], ["Cooper · Donovan · Tomasetti · Phillips · Huerter", 0, "2:32 · 3-3"], ["Cooper · Tomasetti · Phillips · Falcao · Huerter", -3, "2:24 · 2-5"], ["Titular: Cooper · Donovan · Tomasetti · Phillips · Hill", -9, "6:24 · 7-16"]]}'><p class="leyenda">Quintetos de UAlbany con más de 2 minutos juntos: tiempo en pista y marcador del tramo. Muestras pequeñas: lectura indicativa.</p></div>
+<div class="grafico" data-tipo="on_off" data-datos='{"referencia": 7, "items": [["Falcao (18 min)", 11, -4], ["Drake (14 min)", 11, -4], ["Ray (5 min)", 5, 2], ["Cooper (34 min)", 4, 3], ["Huerter (17 min)", 4, 3], ["Tomasetti (33 min)", 3, 4], ["Borrellas (9 min)", 3, 4], ["Donovan (26 min)", -1, 8], ["Hill (15 min)", -1, 8], ["Phillips (27 min)", -4, 11]]}'><p class="leyenda">Margen de UAlbany con cada jugadora en pista (punto lleno) y en el banquillo (punto vacío). Línea dorada: margen final (+7).</p></div>
 <div class="cols">
-<div>
-<h3>+/- individual</h3>
-<table>
-  <thead><tr><th>Jugadora</th><th>Min</th><th>+/-</th></tr></thead>
+<div><h2>Lo que muestran</h2><ul>
+  <li>El <b>quinteto titular perdió de 9</b> en 6:24. <span class="tag">Certeza</span></li>
+  <li>Con <b>Falcao y Drake</b> en pista, UAlbany ganó sus minutos por 11 cada una. <span class="tag">Certeza</span></li>
+  <li><b>Phillips y Hill</b>, titulares, en negativo y 0 de 6 en triples. <span class="tag">Certeza</span></li>
+</ul></div>
+<div><h2>Cautela</h2><p>Ningún quinteto pasó de 6:30 juntas: un triple cambia el +/-. Que Falcao y Drake salgan bien es un indicio; harían falta 3–5 partidos para confirmarlo. <span class="tag suposicion">Suposición</span></p></div>
+</div>
+</div>
+
+<div class="seccion">
+<p class="antetitulo">Recomendaciones</p>
+<h1>Plan contra UAlbany</h1>
+<div class="solo-a4"><table>
+  <thead><tr><th>#</th><th>Medida</th><th>Por qué</th><th>Indicador de éxito</th><th>Confianza</th></tr></thead>
   <tbody>
-    <tr><td><b>Falcao</b></td><td class="n">18,4</td><td class="n pos">+11</td></tr>
-    <tr><td><b>Drake</b></td><td class="n">14,4</td><td class="n pos">+11</td></tr>
-    <tr><td>Ray</td><td class="n">5,3</td><td class="n pos">+5</td></tr>
-    <tr><td>Cooper</td><td class="n">34,1</td><td class="n pos">+4</td></tr>
-    <tr><td>Huerter</td><td class="n">17,4</td><td class="n pos">+4</td></tr>
-    <tr><td>Tomasetti</td><td class="n">33,2</td><td class="n pos">+3</td></tr>
-    <tr><td>Borrellas</td><td class="n">8,8</td><td class="n pos">+3</td></tr>
-    <tr><td>Donovan</td><td class="n">25,9</td><td class="n neg">−1</td></tr>
-    <tr><td>Hill</td><td class="n">15,4</td><td class="n neg">−1</td></tr>
-    <tr><td>Phillips</td><td class="n">27,1</td><td class="n neg">−4</td></tr>
+    <tr><td class="num">1</td><td><b>Defender a Cooper por delante</b> y ayuda al recibir</td><td>24 pts, todos cerca del aro; 6 pérdidas si bota</td><td>Cooper ≤ 12 tiros; ≥ 4 pérdidas</td><td><span class="tag probable">Probable</span></td></tr>
+    <tr><td class="num">2</td><td><b>Ayudar desde las que no tiran</b>; nunca desde Huerter ni Donovan</td><td>0 de 12 en triples del resto</td><td>Huerter + Donovan ≤ 6 triples intentados</td><td><span class="tag">Certeza</span></td></tr>
+    <tr><td class="num">3</td><td><b>Salida de presión con dos bases</b></td><td>29,7 % de pérdidas de Cornell; 13 pts de UAlbany tras pérdida</td><td>TOV % ≤ 18</td><td><span class="tag probable">Probable</span></td></tr>
+    <tr><td class="num">4</td><td><b>No buscar la bandeja con Falcao debajo</b></td><td>3 tapones en 18 min; Cornell 7 de 20 en bandejas</td><td>≥ 50 % en tiros cerca del aro</td><td><span class="tag probable">Probable</span></td></tr>
+    <tr><td class="num">5</td><td><b>Una más al rebote ofensivo</b></td><td>UAlbany casi no corre (3 pts al contraataque)</td><td>Rebote ofensivo ≥ 25 %</td><td><span class="tag suposicion">Suposición</span></td></tr>
+  </tbody>
+</table></div>
+<div class="solo-movil">
+  <div class="card"><div class="hd">1 · Cooper por delante<span>Probable</span></div><div class="bd">Ayuda al recibir; si bota, pierde. <div class="objetivo">Cooper ≤ 12 tiros</div></div></div>
+  <div class="card"><div class="hd">2 · Ayudar desde las que no tiran<span>Certeza</span></div><div class="bd">Nunca desde Huerter ni Donovan. <div class="objetivo">≤ 6 triples de las dos</div></div></div>
+  <div class="card"><div class="hd">3 · Salida de presión<span>Probable</span></div><div class="bd">Dos jugadoras que suban el balón. <div class="objetivo">Pérdidas ≤ 18 %</div></div></div>
+  <div class="card"><div class="hd">4 · Ojo con Falcao<span>Probable</span></div><div class="bd">Media distancia o pase fuera. <div class="objetivo">≥ 50 % cerca del aro</div></div></div>
+  <div class="card"><div class="hd">5 · Rebote ofensivo<span>Suposición</span></div><div class="bd">Una más al rebote: no corren. <div class="objetivo">Rebote ofensivo ≥ 25 %</div></div></div>
+</div>
+<h2>Cómo se verificará</h2>
+<p>En el próximo partido contra UAlbany, las tres cifras que dirán si el plan funciona: <b>pérdidas propias</b>, <b>tiros de Cooper</b> y <b>triples intentados por Huerter y Donovan</b>. <span class="tag suposicion">Suposición</span></p>
+
+<div class="salto-a4"></div>
+<p class="antetitulo">Anexo</p>
+<h1>Método, validación y límites</h1>
+<ol>
+  <li><b>Fuente:</b> box score y jugada a jugada oficiales (PDF, 8 páginas).</li>
+  <li><b>Validación:</b> los totales cuadran con el marcador (47 y 54); tiros libres y pérdidas por cuarto suman lo mismo que el acta. <span class="tag">Certeza</span></li>
+  <li><b>Quintetos:</b> 27 tramos reconstruidos con <code>quintetos.py</code>; suman 40:00, dan el 54–47 y los minutos coinciden con el acta (±1 min por redondeo). <span class="tag">Certeza</span></li>
+  <li><b>Métricas:</b> posesiones = TCI − RO + PER + 0,44·TLI; eFG = (TC + 0,5·T3)/TCI; TOV % = PER/(TCI + 0,44·TLI + PER).</li>
+</ol>
+<table>
+  <thead><tr><th>Límite</th><th>Efecto</th></tr></thead>
+  <tbody>
+    <tr><td>Un solo partido, de 2024</td><td>On/off y quintetos son indicativos; la plantilla actual será otra.</td></tr>
+    <tr><td>El jugada a jugada no da zona de tiro ni tipo de pérdida</td><td>No se sabe si las pérdidas fueron por presión, pases o faltas en ataque.</td></tr>
+    <tr><td>Sin vídeo</td><td>Las defensas (individual, zona, presión) no se pueden confirmar.</td></tr>
   </tbody>
 </table>
+<div class="firma"><div class="nombre">Nino Conde</div><small>Autor del informe · Técnico Superior en Baloncesto</small></div>
 </div>
-<div>
-<h3>Qué dicen</h3>
-<ul>
-  <li>El <b>quinteto inicial perdió de 9</b>: empezó 2-5 el 1º y 5-11 el 3º (el 8-0 de Cornell).</li>
-  <li>Con <b>Falcao y Drake</b> en pista, UAlbany ganó sus minutos por 11 cada una. El mejor quinteto (+5) es el del 7-0 del 3º: Falcao protege el aro, Drake roba.</li>
-  <li><b>Phillips y Hill</b>, titulares, en negativo y 0 de 6 en triples entre las dos.</li>
-  <li><b>Ningún quinteto pasó de 6:30 juntas</b>: un triple cambia el +/-. Es un indicio; harían falta 3 o 4 partidos más.</li>
-</ul>
-</div>
-</div>
-
-<h2>10. Dónde ganan y dónde pierden</h2>
-<table>
-  <thead><tr><th>Ganan con…</th><th>Pierden con…</th></tr></thead>
-  <tbody>
-    <tr><td>Pérdidas que provocan (13 puntos tras pérdida)</td><td>Sus propias pérdidas (16; 6 de Cooper)</td></tr>
-    <tr><td>Protección del aro con Falcao</td><td>Tiro exterior fuera de Huerter y Donovan</td></tr>
-    <tr><td>Tiros libres (10 de 12)</td><td>Poco juego de pase (8 asistencias)</td></tr>
-  </tbody>
-</table>
-
-<h2>11. Plan contra UAlbany</h2>
-<div class="cols">
-<div>
-<h3>Defensa</h3>
-<ol>
-  <li><b>Cooper:</b> defenderla por delante en el poste y ayuda en cuanto recibe. Obligarla a botar o pasar.</li>
-  <li><b>Ayudar desde las que no tiran</b> (Phillips, Tomasetti, Hill, Drake, Falcao). <b>Nunca desde Huerter ni Donovan</b>: salida fuerte a tapar el tiro.</li>
-  <li><b>Huerter en el lado débil:</b> saber siempre dónde está. Si mete el segundo triple, cambiar algo.</li>
-</ol>
-</div>
-<div>
-<h3>Ataque y rebote</h3>
-<ol>
-  <li><b>Cuidar el balón</b> contra su presión: dos jugadoras que suban el balón, pases cortos.</li>
-  <li><b>No buscar la bandeja con Falcao debajo:</b> media distancia o pase fuera. Tirar más de tres.</li>
-  <li><b>Atacar cuando estén Phillips y Hill juntas.</b></li>
-  <li><b>Rebote:</b> mandar una más al ofensivo; UAlbany casi no corre.</li>
-</ol>
-</div>
-</div>
-
-<h2>12. Cómo se hizo y qué se comprobó</h2>
-<ul>
-  <li><span class="tag">Certeza</span> Los totales del box score cuadran con el marcador (47 y 54); los tiros libres y las pérdidas cuarto a cuarto suman lo mismo que los totales.</li>
-  <li><span class="tag">Certeza</span> Quintetos: 27 tramos reconstruidos de los cambios del jugada a jugada con el script <code>quintetos.py</code> del plugin. Suman exactamente <b>40 minutos</b>, dan el <b>54-47</b> final y los minutos de cada jugadora coinciden con el box score con menos de 1 minuto de diferencia (redondeo).</li>
-  <li><span class="tag">Certeza</span> Al preparar el ejemplo del script apareció un error de transcripción (dos tiros libres de Cooper en el 00:25 puestos después de un cambio en vez de antes). Se corrigió; las cifras de este informe son las correctas.</li>
-</ul>
-
-<h2>13. Datos que faltan</h2>
-<ul>
-  <li><b>Más partidos</b> de UAlbany (4 o 5) para que el +/- de los quintetos signifique algo.</li>
-  <li><b>La plantilla actual</b> de UAlbany (2026-27).</li>
-  <li><b>Vídeo</b> para saber su defensa (individual, zona, presión) y qué jugadas usan para dar el balón a Cooper.</li>
-</ul>
-
-<footer>BasktIQ Pro · plugin scouting-baloncesto (skills scouting-baloncesto y analisis-play-by-play, script quintetos.py)</footer>

@@ -7,3 +7,5 @@ Usa la skill `planificacion-entrenamiento` para diseñar una sesión con estos d
 
 - Si falta algún dato clave (edad, duración, objetivo, nº de jugadoras), pregúntalo antes (máx. 3 preguntas).
 - Si en esta conversación o en el proyecto hay un informe de scouting o de Cuatro Factores, conecta los ejercicios con sus conclusiones.
+
+- Si el usuario quiere la sesión en PDF, usa `/pdf` con el modelo de sesión: una tarjeta por ejercicio con su pizarra.

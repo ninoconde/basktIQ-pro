@@ -1,17 +1,30 @@
-@page { size: A4; margin: 13mm 13mm 14mm; }
-body { font-size: 10pt; line-height: 1.38; }
-h1 { font-size: 19pt; }
-h2 { font-size: 13pt; margin: 6mm 0 2.5mm; }
-h3 { font-size: 11pt; margin: 4mm 0 1.5mm; }
-.sub { margin: 1mm 0 4mm; }
-table { font-size: 9.3pt; }
-th { padding: 1.4mm 2mm; font-size: 8.8pt; }
-td { padding: 1.3mm 2mm; }
-.box { padding: 2.5mm 3.5mm; }
-.score { grid-template-columns: repeat(3, 1fr); }
-.score b { font-size: 16pt; }
-.meta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5mm; margin: 2mm 0; }
-.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
+@page { size: A4; margin: 17mm 15mm 16mm; }
+@page portada { margin: 0; }
+body { font-size: 10pt; line-height: 1.45; }
+.portada { width: 210mm; height: 296.6mm; }
+.portada .contenido { padding: 22mm 20mm 18mm; }
+.portada .barra { margin: 62mm 0 6mm; }
+.portada h1 { font-size: 46pt; }
+.portada .lema { font-size: 12pt; margin: 9mm 0 12mm; max-width: 150mm; }
+.portada .marcador { padding: 6mm 8mm; }
+.portada .equipo { font-size: 9.5pt; }
+.portada .resultado { font-size: 44pt; }
+.portada .cuartos { margin-top: 2mm; font-size: 10.5pt; }
+.portada .autor .nombre { font-size: 26pt; }
+.antetitulo { font-size: 8.5pt; }
+h1 { font-size: 23pt; }
+h2 { font-size: 12pt; }
+h3 { font-size: 10.5pt; }
+.entradilla { font-size: 11pt; }
+.kpis { grid-template-columns: repeat(4, 1fr); }
+.kpis.tres { grid-template-columns: repeat(3, 1fr); }
+.kpis.cinco { grid-template-columns: repeat(5, 1fr); }
+.kpi .valor { font-size: 21pt; }
+table { font-size: 9pt; }
+th { font-size: 7.6pt; padding: 2.2mm 2.2mm; }
+td { padding: 1.8mm 2.2mm; }
+.fases { grid-template-columns: 1fr 1fr; }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 7mm; }
 .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0 4mm; }
 .solo-movil, .salto-movil { display: none; }
-.salto-a4 { page-break-before: always; }
+.salto-a4 { break-before: page; }
