@@ -1,6 +1,6 @@
 ---
 name: scouting-baloncesto
-description: Método de scouting de baloncesto (jugadoras, rivales, self-scouting) que combina estadística avanzada con análisis táctico. Úsala cuando el usuario pida un informe de scouting, analizar a una jugadora o a un equipo rival, preparar un plan de partido, calcular los Cuatro Factores o interpretar un box score o play-by-play.
+description: Método de scouting de baloncesto (jugadoras, rivales, self-scouting) que combina estadística avanzada con análisis táctico. Úsala cuando el usuario pida un informe de scouting, analizar a una jugadora o a un equipo rival, preparar un plan de partido, calcular los Cuatro Factores, interpretar un box score o proyectar a una jugadora (p. ej. a la NCAA). No la uses para analizar el play-by-play jugada a jugada (usa analisis-play-by-play) ni para diseñar entrenamientos (usa planificacion-entrenamiento).
 ---
 
 # Scouting de baloncesto

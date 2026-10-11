@@ -1,6 +1,6 @@
 ---
 name: planificacion-entrenamiento
-description: Diseña sesiones y microciclos de entrenamiento de baloncesto adaptados a edad, nivel, número de jugadoras, duración y objetivos. Úsala cuando el usuario pida una sesión, un plan semanal, ejercicios para trabajar algo concreto o convertir las conclusiones de un scouting en entrenamiento.
+description: Diseña sesiones y microciclos de entrenamiento de baloncesto adaptados a edad, nivel, número de jugadoras, duración y objetivos. Úsala cuando el usuario pida una sesión, un entrenamiento, un plan semanal, ejercicios o tareas para trabajar algo concreto (tiro, rebote, defensa del bloqueo…), o convertir las conclusiones de un scouting en entrenamiento. No la uses para analizar partidos o rivales (usa scouting-baloncesto o analisis-play-by-play).
 ---
 
 # Planificación de entrenamiento

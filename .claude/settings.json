@@ -1,0 +1,13 @@
+{
+  "extraKnownMarketplaces": {
+    "basktiq": {
+      "source": {
+        "source": "github",
+        "repo": "ninoconde/basktiq-pro"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "scouting-baloncesto@basktiq": true
+  }
+}

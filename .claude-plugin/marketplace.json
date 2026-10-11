@@ -10,8 +10,8 @@
     {
       "name": "scouting-baloncesto",
       "source": "./plugins/scouting-baloncesto",
-      "description": "Scouting de jugadoras y rivales, planes de partido, Cuatro Factores y planificación de entrenamientos.",
-      "version": "0.2.0",
+      "description": "Scouting de jugadoras y rivales, planes de partido, Cuatro Factores, análisis de play-by-play y planificación de entrenamientos.",
+      "version": "0.3.0",
       "category": "sports"
     }
   ]
