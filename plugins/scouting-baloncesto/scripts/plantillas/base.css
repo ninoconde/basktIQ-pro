@@ -1,0 +1,36 @@
+/* Componentes comunes de los PDFs de BasktIQ (A4 y móvil). */
+:root { --ink:#1b1f24; --muted:#5b6470; --line:#d5dae0; --accent:#1d4f91; --red:#c8102e; --soft:#f3f5f8; --good:#1f7a3a; }
+* { box-sizing: border-box; }
+body { font-family: "DejaVu Sans", Arial, sans-serif; color: var(--ink); margin: 0; background: #fff; }
+h1 { margin: 0 0 1.5mm; line-height: 1.15; }
+h2 { color: var(--accent); border-bottom: 2px solid var(--accent); padding-bottom: 1mm; page-break-after: avoid; }
+h3 { page-break-after: avoid; }
+p { margin: 0 0 2mm; }
+ul, ol { margin: 0 0 2mm 5mm; padding: 0; }
+li { margin-bottom: 1.5mm; }
+.sub { color: var(--muted); }
+table { width: 100%; border-collapse: collapse; margin: 1mm 0 3mm; }
+tr, .card, .box, .score, .meta { page-break-inside: avoid; }
+th { background: var(--ink); color: #fff; text-align: left; }
+td { border-bottom: 1px solid var(--line); vertical-align: top; }
+tr:nth-child(even) td { background: var(--soft); }
+td.n { text-align: right; white-space: nowrap; }
+.pos { color: var(--good); font-weight: bold; }
+.neg { color: var(--red); font-weight: bold; }
+.box { border-left: 4px solid var(--accent); background: var(--soft); margin: 2mm 0 3mm; }
+.box.aviso { border-left-color: var(--red); background: #fff4f5; }
+.score { display: grid; gap: 2.5mm; margin: 2mm 0 3mm; }
+.score div { background: var(--soft); border-radius: 2mm; padding: 2mm 3mm; color: var(--muted); }
+.score b { display: block; color: var(--ink); }
+.meta div { background: var(--soft); border-radius: 2mm; padding: 1.5mm 2.5mm; }
+.meta b { display: block; color: var(--muted); font-size: 0.8em; text-transform: uppercase; }
+.card { border: 1px solid var(--line); border-radius: 3mm; margin: 0 0 3mm; overflow: hidden; }
+.card .hd { background: var(--ink); color: #fff; padding: 1.8mm 3mm; display: flex; justify-content: space-between; align-items: baseline; gap: 2mm; }
+.card .hd span { font-weight: bold; color: #9fc1ff; white-space: nowrap; }
+.card .bd { padding: 2mm 3mm; }
+.objetivo { background: var(--soft); border-radius: 2mm; padding: 1.5mm 2.5mm; margin-top: 1.5mm; font-weight: bold; }
+.k { color: var(--muted); font-size: 0.8em; font-weight: bold; text-transform: uppercase; }
+.tag { font-size: 0.75em; font-weight: bold; padding: 0.2mm 1.2mm; border-radius: 1mm; background: #e7edf6; color: var(--accent); white-space: nowrap; }
+.tag.suposicion { background: #fdecef; color: var(--red); }
+.salto { page-break-before: always; }
+footer { margin-top: 5mm; font-size: 8pt; color: var(--muted); }

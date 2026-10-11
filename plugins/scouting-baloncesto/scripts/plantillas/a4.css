@@ -1,0 +1,17 @@
+@page { size: A4; margin: 13mm 13mm 14mm; }
+body { font-size: 10pt; line-height: 1.38; }
+h1 { font-size: 19pt; }
+h2 { font-size: 13pt; margin: 6mm 0 2.5mm; }
+h3 { font-size: 11pt; margin: 4mm 0 1.5mm; }
+.sub { margin: 1mm 0 4mm; }
+table { font-size: 9.3pt; }
+th { padding: 1.4mm 2mm; font-size: 8.8pt; }
+td { padding: 1.3mm 2mm; }
+.box { padding: 2.5mm 3.5mm; }
+.score { grid-template-columns: repeat(3, 1fr); }
+.score b { font-size: 16pt; }
+.meta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5mm; margin: 2mm 0; }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0 4mm; }
+.solo-movil, .salto-movil { display: none; }
+.salto-a4 { page-break-before: always; }

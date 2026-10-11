@@ -17,6 +17,7 @@ Plugin de Claude Code para entrenadores: scouting de jugadoras y rivales, planes
 | `/scouting-baloncesto:plan-partido <rival> [notas]` | Plan de partido de una página |
 | `/scouting-baloncesto:cuatro-factores <box score>` | Cuatro Factores e interpretación |
 | `/scouting-baloncesto:quintetos <PDF o PBP> <equipo>` | +/- por quintetos e individual, validado contra minutos y marcador |
+| `/scouting-baloncesto:pdf <qué informe> [a4\|movil\|ambos]` | Informe, scouting o sesión en PDF para imprimir y/o para el móvil |
 | `/scouting-baloncesto:sesion <categoría> <duración> <objetivo> [notas]` | Sesión de entrenamiento lista para pista |
 | `/scouting-baloncesto:microciclo <categoría> <días> <día de partido> [rival]` | Plan semanal orientado al partido |
 
@@ -40,4 +41,12 @@ Cada descripción indica también cuándo **no** activarse, para que no se pisen
 
 ```
 python3 plugins/scouting-baloncesto/scripts/quintetos.py plugins/scouting-baloncesto/scripts/ejemplos/ualbany-cornell-2024-11-23.json
+```
+
+## PDFs (A4 y móvil)
+
+`scripts/a_pdf.py` convierte el cuerpo HTML de un informe en PDF usando Chrome, Chromium o Edge sin ventana (si no lo encuentra, indica la ruta en `BASKTIQ_CHROME`). Las plantillas están en `scripts/plantillas/`: `base.css` (componentes), `a4.css` (imprimir) y `movil.css` (página de 100 × 200 mm, letra grande). Con `.solo-a4` / `.solo-movil` un mismo contenido sirve para los dos formatos.
+
+```
+python3 plugins/scouting-baloncesto/scripts/a_pdf.py plugins/scouting-baloncesto/scripts/ejemplos/informe-ualbany-cornell.html --salida informes
 ```

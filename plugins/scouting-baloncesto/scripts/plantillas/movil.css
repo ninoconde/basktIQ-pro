@@ -1,0 +1,17 @@
+@page { size: 100mm 200mm; margin: 6mm 5mm; }
+body { font-size: 12pt; line-height: 1.35; }
+h1 { font-size: 16.5pt; }
+h2 { font-size: 14pt; margin: 5mm 0 2.5mm; }
+h3 { font-size: 12.5pt; margin: 3mm 0 1.5mm; }
+.sub { font-size: 10.5pt; margin: 0 0 3mm; }
+table { font-size: 11pt; }
+th { padding: 1.5mm 2mm; font-size: 10pt; }
+td { padding: 1.6mm 2mm; }
+.box { padding: 2mm 3mm; font-size: 11pt; }
+.score { grid-template-columns: 1fr 1fr; }
+.score div { text-align: center; font-size: 10pt; }
+.score b { font-size: 22pt; }
+.meta div { margin-bottom: 1.5mm; }
+.card .hd { font-size: 12.5pt; }
+.solo-a4, .salto-a4 { display: none; }
+.salto-movil { page-break-before: always; }
