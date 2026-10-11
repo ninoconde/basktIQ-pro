@@ -20,7 +20,7 @@ Objetivo: explicar **cuándo y por qué** cambió el partido, no repetir la secu
 - **Puntos de inflexión**: cambios de líder y la jugada que inició cada racha decisiva.
 - **Por cuartos**: puntos, pérdidas y faltas de cada equipo; dónde se ganó o perdió.
 - **Tiempos muertos y cambios**: diferencia en las 5 posesiones anteriores frente a las 5 posteriores. Con menos de 5 posesiones, avisa de que la muestra no vale.
-- **Quintetos** (si los cambios lo permiten): +/- de cada quinteto con más de 3 minutos juntos.
+- **Quintetos** (si los cambios lo permiten): no los cuentes a mano. Transcribe cambios y canastas a JSON y usa `scripts/quintetos.py` del plugin (ver comando `/quintetos`), que valida minutos y marcador. Comenta los quintetos con más de 2 minutos juntos.
 - **Finales de cuarto y clutch** (últimos 5 minutos con diferencia ≤ 5).
 
 ## Formato

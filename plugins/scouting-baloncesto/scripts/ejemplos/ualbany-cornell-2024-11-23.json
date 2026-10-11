@@ -1,0 +1,858 @@
+{
+ "equipo": "UAlbany",
+ "rival": "Cornell",
+ "fecha": "2024-11-23",
+ "fuente": "PDF oficial box score + play-by-play",
+ "duracion_periodos": [
+  600,
+  600,
+  600,
+  600
+ ],
+ "titulares": [
+  "Cooper",
+  "Donovan",
+  "Tomasetti",
+  "Phillips",
+  "Hill"
+ ],
+ "final": {
+  "equipo": 54,
+  "rival": 47
+ },
+ "minutos_box": {
+  "Cooper": 35,
+  "Donovan": 26,
+  "Tomasetti": 34,
+  "Phillips": 28,
+  "Hill": 15,
+  "Huerter": 17,
+  "Falcao": 18,
+  "Drake": 14,
+  "Borrellas": 8,
+  "Ray": 5
+ },
+ "eventos": [
+  {
+   "p": 1,
+   "t": "09:45",
+   "tipo": "canasta",
+   "lado": "rival",
+   "pts": 3
+  },
+  {
+   "p": 1,
+   "t": "08:43",
+   "tipo": "canasta",
+   "lado": "equipo",
+   "pts": 2
+  },
+  {
+   "p": 1,
+   "t": "07:50",
+   "tipo": "canasta",
+   "lado": "rival",
+   "pts": 2
+  },
+  {
+   "p": 1,
+   "t": "07:30",
+   "tipo": "sale",
+   "jugadora": "Hill"
+  },
+  {
+   "p": 1,
+   "t": "07:30",
+   "tipo": "entra",
+   "jugadora": "Borrellas"
+  },
+  {
+   "p": 1,
+   "t": "07:30",
+   "tipo": "canasta",
+   "lado": "equipo",
+   "pts": 2
+  },
+  {
+   "p": 1,
+   "t": "07:11",
+   "tipo": "canasta",
+   "lado": "rival",
+   "pts": 2
+  },
+  {
+   "p": 1,
+   "t": "06:05",
+   "tipo": "canasta",
+   "lado": "rival",
+   "pts": 2
+  },
+  {
+   "p": 1,
+   "t": "05:44",
+   "tipo": "canasta",
+   "lado": "equipo",
+   "pts": 3
+  },
+  {
+   "p": 1,
+   "t": "05:19",
+   "tipo": "sale",
+   "jugadora": "Donovan"
+  },
+  {
+   "p": 1,
+   "t": "05:19",
+   "tipo": "sale",
+   "jugadora": "Tomasetti"
+  },
+  {
+   "p": 1,
+   "t": "05:19",
+   "tipo": "entra",
+   "jugadora": "Falcao"
+  },
+  {
+   "p": 1,
+   "t": "05:19",
+   "tipo": "entra",
+   "jugadora": "Huerter"
+  },
+  {
+   "p": 1,
+   "t": "05:19",
+   "tipo": "canasta",
+   "lado": "rival",
+   "pts": 1
+  },
+  {
+   "p": 1,
+   "t": "03:16",
+   "tipo": "sale",
+   "jugadora": "Cooper"
+  },
+  {
+   "p": 1,
+   "t": "03:16",
+   "tipo": "sale",
+   "jugadora": "Phillips"
+  },
+  {
+   "p": 1,
+   "t": "03:16",
+   "tipo": "entra",
+   "jugadora": "Donovan"
+  },
+  {
+   "p": 1,
+   "t": "03:16",
+   "tipo": "entra",
+   "jugadora": "Tomasetti"
+  },
+  {
+   "p": 1,
+   "t": "02:32",
+   "tipo": "sale",
+   "jugadora": "Borrellas"
+  },
+  {
+   "p": 1,
+   "t": "02:32",
+   "tipo": "entra",
+   "jugadora": "Hill"
+  },
+  {
+   "p": 1,
+   "t": "02:06",
+   "tipo": "sale",
+   "jugadora": "Huerter"
+  },
+  {
+   "p": 1,
+   "t": "02:06",
+   "tipo": "entra",
+   "jugadora": "Drake"
+  },
+  {
+   "p": 1,
+   "t": "01:11",
+   "tipo": "canasta",
+   "lado": "equipo",
+   "pts": 2
+  },
+  {
+   "p": 2,
+   "t": "10:00",
+   "tipo": "sale",
+   "jugadora": "Falcao"
+  },
+  {
+   "p": 2,
+   "t": "10:00",
+   "tipo": "entra",
+   "jugadora": "Cooper"
+  },
+  {
+   "p": 2,
+   "t": "09:38",
+   "tipo": "sale",
+   "jugadora": "Hill"
+  },
+  {
+   "p": 2,
+   "t": "09:38",
+   "tipo": "entra",
+   "jugadora": "Phillips"
+  },
+  {
+   "p": 2,
+   "t": "08:19",
+   "tipo": "canasta",
+   "lado": "rival",
+   "pts": 2
+  },
+  {
+   "p": 2,
+   "t": "07:58",
+   "tipo": "canasta",
+   "lado": "equipo",
+   "pts": 2
+  },
+  {
+   "p": 2,
+   "t": "06:59",
+   "tipo": "sale",
+   "jugadora": "Tomasetti"
+  },
+  {
+   "p": 2,
+   "t": "06:59",
+   "tipo": "sale",
+   "jugadora": "Drake"
+  },
+  {
+   "p": 2,
+   "t": "06:59",
+   "tipo": "entra",
+   "jugadora": "Ray"
+  },
+  {
+   "p": 2,
+   "t": "06:59",
+   "tipo": "entra",
+   "jugadora": "Hill"
+  },
+  {
+   "p": 2,
+   "t": "05:15",
+   "tipo": "canasta",
+   "lado": "equipo",
+   "pts": 2
+  },
+  {
+   "p": 2,
+   "t": "04:58",
+   "tipo": "sale",
+   "jugadora": "Donovan"
+  },
+  {
+   "p": 2,
+   "t": "04:58",
+   "tipo": "entra",
+   "jugadora": "Falcao"
+  },
+  {
+   "p": 2,
+   "t": "04:58",
+   "tipo": "canasta",
+   "lado": "rival",
+   "pts": 2
+  },
+  {
+   "p": 2,
+   "t": "04:08",
+   "tipo": "canasta",
+   "lado": "equipo",
+   "pts": 2
+  },
+  {
+   "p": 2,
+   "t": "03:33",
+   "tipo": "sale",
+   "jugadora": "Ray"
+  },
+  {
+   "p": 2,
+   "t": "03:33",
+   "tipo": "entra",
+   "jugadora": "Tomasetti"
+  },
+  {
+   "p": 2,
+   "t": "03:11",
+   "tipo": "canasta",
+   "lado": "equipo",
+   "pts": 2
+  },
+  {
+   "p": 2,
+   "t": "01:13",
+   "tipo": "sale",
+   "jugadora": "Hill"
+  },
+  {
+   "p": 2,
+   "t": "01:13",
+   "tipo": "sale",
+   "jugadora": "Falcao"
+  },
+  {
+   "p": 2,
+   "t": "01:13",
+   "tipo": "entra",
+   "jugadora": "Donovan"
+  },
+  {
+   "p": 2,
+   "t": "01:13",
+   "tipo": "entra",
+   "jugadora": "Huerter"
+  },
+  {
+   "p": 2,
+   "t": "01:13",
+   "tipo": "canasta",
+   "lado": "rival",
+   "pts": 2
+  },
+  {
+   "p": 2,
+   "t": "00:55",
+   "tipo": "canasta",
+   "lado": "equipo",
+   "pts": 3
+  },
+  {
+   "p": 3,
+   "t": "10:00",
+   "tipo": "sale",
+   "jugadora": "Huerter"
+  },
+  {
+   "p": 3,
+   "t": "10:00",
+   "tipo": "entra",
+   "jugadora": "Hill"
+  },
+  {
+   "p": 3,
+   "t": "09:52",
+   "tipo": "canasta",
+   "lado": "rival",
+   "pts": 2
+  },
+  {
+   "p": 3,
+   "t": "09:32",
+   "tipo": "canasta",
+   "lado": "equipo",
+   "pts": 2
+  },
+  {
+   "p": 3,
+   "t": "08:12",
+   "tipo": "canasta",
+   "lado": "rival",
+   "pts": 3
+  },
+  {
+   "p": 3,
+   "t": "07:46",
+   "tipo": "canasta",
+   "lado": "equipo",
+   "pts": 3
+  },
+  {
+   "p": 3,
+   "t": "07:25",
+   "tipo": "canasta",
+   "lado": "rival",
+   "pts": 2
+  },
+  {
+   "p": 3,
+   "t": "06:59",
+   "tipo": "canasta",
+   "lado": "rival",
+   "pts": 2
+  },
+  {
+   "p": 3,
+   "t": "06:12",
+   "tipo": "canasta",
+   "lado": "rival",
+   "pts": 2
+  },
+  {
+   "p": 3,
+   "t": "06:06",
+   "tipo": "sale",
+   "jugadora": "Cooper"
+  },
+  {
+   "p": 3,
+   "t": "06:06",
+   "tipo": "sale",
+   "jugadora": "Donovan"
+  },
+  {
+   "p": 3,
+   "t": "06:06",
+   "tipo": "sale",
+   "jugadora": "Hill"
+  },
+  {
+   "p": 3,
+   "t": "06:06",
+   "tipo": "entra",
+   "jugadora": "Borrellas"
+  },
+  {
+   "p": 3,
+   "t": "06:06",
+   "tipo": "entra",
+   "jugadora": "Falcao"
+  },
+  {
+   "p": 3,
+   "t": "06:06",
+   "tipo": "entra",
+   "jugadora": "Ray"
+  },
+  {
+   "p": 3,
+   "t": "05:08",
+   "tipo": "canasta",
+   "lado": "rival",
+   "pts": 2
+  },
+  {
+   "p": 3,
+   "t": "04:52",
+   "tipo": "sale",
+   "jugadora": "Phillips"
+  },
+  {
+   "p": 3,
+   "t": "04:52",
+   "tipo": "sale",
+   "jugadora": "Ray"
+  },
+  {
+   "p": 3,
+   "t": "04:52",
+   "tipo": "entra",
+   "jugadora": "Drake"
+  },
+  {
+   "p": 3,
+   "t": "04:52",
+   "tipo": "entra",
+   "jugadora": "Cooper"
+  },
+  {
+   "p": 3,
+   "t": "04:40",
+   "tipo": "canasta",
+   "lado": "equipo",
+   "pts": 2
+  },
+  {
+   "p": 3,
+   "t": "03:35",
+   "tipo": "sale",
+   "jugadora": "Borrellas"
+  },
+  {
+   "p": 3,
+   "t": "03:35",
+   "tipo": "entra",
+   "jugadora": "Huerter"
+  },
+  {
+   "p": 3,
+   "t": "02:54",
+   "tipo": "canasta",
+   "lado": "equipo",
+   "pts": 2
+  },
+  {
+   "p": 3,
+   "t": "02:53",
+   "tipo": "canasta",
+   "lado": "equipo",
+   "pts": 1
+  },
+  {
+   "p": 3,
+   "t": "01:53",
+   "tipo": "canasta",
+   "lado": "equipo",
+   "pts": 2
+  },
+  {
+   "p": 3,
+   "t": "00:50",
+   "tipo": "sale",
+   "jugadora": "Falcao"
+  },
+  {
+   "p": 3,
+   "t": "00:50",
+   "tipo": "entra",
+   "jugadora": "Donovan"
+  },
+  {
+   "p": 3,
+   "t": "00:50",
+   "tipo": "canasta",
+   "lado": "rival",
+   "pts": 2
+  },
+  {
+   "p": 3,
+   "t": "00:31",
+   "tipo": "canasta",
+   "lado": "equipo",
+   "pts": 2
+  },
+  {
+   "p": 4,
+   "t": "09:27",
+   "tipo": "canasta",
+   "lado": "rival",
+   "pts": 3
+  },
+  {
+   "p": 4,
+   "t": "09:02",
+   "tipo": "canasta",
+   "lado": "equipo",
+   "pts": 2
+  },
+  {
+   "p": 4,
+   "t": "07:59",
+   "tipo": "canasta",
+   "lado": "rival",
+   "pts": 2
+  },
+  {
+   "p": 4,
+   "t": "07:40",
+   "tipo": "canasta",
+   "lado": "equipo",
+   "pts": 2
+  },
+  {
+   "p": 4,
+   "t": "06:26",
+   "tipo": "canasta",
+   "lado": "rival",
+   "pts": 2
+  },
+  {
+   "p": 4,
+   "t": "06:04",
+   "tipo": "canasta",
+   "lado": "equipo",
+   "pts": 3
+  },
+  {
+   "p": 4,
+   "t": "05:49",
+   "tipo": "sale",
+   "jugadora": "Tomasetti"
+  },
+  {
+   "p": 4,
+   "t": "05:49",
+   "tipo": "sale",
+   "jugadora": "Drake"
+  },
+  {
+   "p": 4,
+   "t": "05:49",
+   "tipo": "sale",
+   "jugadora": "Cooper"
+  },
+  {
+   "p": 4,
+   "t": "05:49",
+   "tipo": "entra",
+   "jugadora": "Phillips"
+  },
+  {
+   "p": 4,
+   "t": "05:49",
+   "tipo": "entra",
+   "jugadora": "Borrellas"
+  },
+  {
+   "p": 4,
+   "t": "05:49",
+   "tipo": "entra",
+   "jugadora": "Falcao"
+  },
+  {
+   "p": 4,
+   "t": "05:47",
+   "tipo": "canasta",
+   "lado": "rival",
+   "pts": 3
+  },
+  {
+   "p": 4,
+   "t": "05:20",
+   "tipo": "canasta",
+   "lado": "equipo",
+   "pts": 3
+  },
+  {
+   "p": 4,
+   "t": "04:37",
+   "tipo": "canasta",
+   "lado": "equipo",
+   "pts": 3
+  },
+  {
+   "p": 4,
+   "t": "04:28",
+   "tipo": "sale",
+   "jugadora": "Donovan"
+  },
+  {
+   "p": 4,
+   "t": "04:28",
+   "tipo": "sale",
+   "jugadora": "Borrellas"
+  },
+  {
+   "p": 4,
+   "t": "04:28",
+   "tipo": "entra",
+   "jugadora": "Cooper"
+  },
+  {
+   "p": 4,
+   "t": "04:28",
+   "tipo": "entra",
+   "jugadora": "Tomasetti"
+  },
+  {
+   "p": 4,
+   "t": "03:25",
+   "tipo": "canasta",
+   "lado": "rival",
+   "pts": 2
+  },
+  {
+   "p": 4,
+   "t": "02:55",
+   "tipo": "canasta",
+   "lado": "equipo",
+   "pts": 2
+  },
+  {
+   "p": 4,
+   "t": "02:37",
+   "tipo": "canasta",
+   "lado": "rival",
+   "pts": 3
+  },
+  {
+   "p": 4,
+   "t": "02:04",
+   "tipo": "sale",
+   "jugadora": "Falcao"
+  },
+  {
+   "p": 4,
+   "t": "02:04",
+   "tipo": "entra",
+   "jugadora": "Donovan"
+  },
+  {
+   "p": 4,
+   "t": "02:04",
+   "tipo": "canasta",
+   "lado": "rival",
+   "pts": 1
+  },
+  {
+   "p": 4,
+   "t": "00:53",
+   "tipo": "sale",
+   "jugadora": "Huerter"
+  },
+  {
+   "p": 4,
+   "t": "00:53",
+   "tipo": "sale",
+   "jugadora": "Donovan"
+  },
+  {
+   "p": 4,
+   "t": "00:53",
+   "tipo": "entra",
+   "jugadora": "Falcao"
+  },
+  {
+   "p": 4,
+   "t": "00:53",
+   "tipo": "entra",
+   "jugadora": "Ray"
+  },
+  {
+   "p": 4,
+   "t": "00:37",
+   "tipo": "sale",
+   "jugadora": "Falcao"
+  },
+  {
+   "p": 4,
+   "t": "00:37",
+   "tipo": "sale",
+   "jugadora": "Ray"
+  },
+  {
+   "p": 4,
+   "t": "00:37",
+   "tipo": "entra",
+   "jugadora": "Donovan"
+  },
+  {
+   "p": 4,
+   "t": "00:37",
+   "tipo": "entra",
+   "jugadora": "Huerter"
+  },
+  {
+   "p": 4,
+   "t": "00:29",
+   "tipo": "sale",
+   "jugadora": "Donovan"
+  },
+  {
+   "p": 4,
+   "t": "00:29",
+   "tipo": "sale",
+   "jugadora": "Huerter"
+  },
+  {
+   "p": 4,
+   "t": "00:29",
+   "tipo": "entra",
+   "jugadora": "Falcao"
+  },
+  {
+   "p": 4,
+   "t": "00:29",
+   "tipo": "entra",
+   "jugadora": "Ray"
+  },
+  {
+   "p": 4,
+   "t": "00:29",
+   "tipo": "canasta",
+   "lado": "equipo",
+   "pts": 1
+  },
+  {
+   "p": 4,
+   "t": "00:25",
+   "tipo": "canasta",
+   "lado": "equipo",
+   "pts": 2
+  },
+  {
+   "p": 4,
+   "t": "00:25",
+   "tipo": "sale",
+   "jugadora": "Falcao"
+  },
+  {
+   "p": 4,
+   "t": "00:25",
+   "tipo": "entra",
+   "jugadora": "Hill"
+  },
+  {
+   "p": 4,
+   "t": "00:15",
+   "tipo": "sale",
+   "jugadora": "Phillips"
+  },
+  {
+   "p": 4,
+   "t": "00:15",
+   "tipo": "sale",
+   "jugadora": "Ray"
+  },
+  {
+   "p": 4,
+   "t": "00:15",
+   "tipo": "sale",
+   "jugadora": "Hill"
+  },
+  {
+   "p": 4,
+   "t": "00:15",
+   "tipo": "entra",
+   "jugadora": "Drake"
+  },
+  {
+   "p": 4,
+   "t": "00:15",
+   "tipo": "entra",
+   "jugadora": "Donovan"
+  },
+  {
+   "p": 4,
+   "t": "00:15",
+   "tipo": "entra",
+   "jugadora": "Huerter"
+  },
+  {
+   "p": 4,
+   "t": "00:10",
+   "tipo": "sale",
+   "jugadora": "Donovan"
+  },
+  {
+   "p": 4,
+   "t": "00:10",
+   "tipo": "sale",
+   "jugadora": "Huerter"
+  },
+  {
+   "p": 4,
+   "t": "00:10",
+   "tipo": "entra",
+   "jugadora": "Ray"
+  },
+  {
+   "p": 4,
+   "t": "00:10",
+   "tipo": "entra",
+   "jugadora": "Hill"
+  },
+  {
+   "p": 4,
+   "t": "00:10",
+   "tipo": "canasta",
+   "lado": "equipo",
+   "pts": 2
+  }
+ ]
+}
