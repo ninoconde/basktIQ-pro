@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Informes generados (pueden contener datos personales)
+informes/
+__pycache__/

@@ -17,6 +17,7 @@ Plugin de Claude Code para entrenadores: scouting de jugadoras y rivales, planes
 | `/scouting-baloncesto:plan-partido <rival> [notas]` | Plan de partido de una página |
 | `/scouting-baloncesto:cuatro-factores <box score>` | Cuatro Factores e interpretación |
 | `/scouting-baloncesto:quintetos <PDF o PBP> <equipo>` | +/- por quintetos e individual, validado contra minutos y marcador |
+| `/scouting-baloncesto:pdf <qué informe> [a4\|movil\|ambos]` | Informe, scouting o sesión en PDF para imprimir y/o para el móvil |
 | `/scouting-baloncesto:sesion <categoría> <duración> <objetivo> [notas]` | Sesión de entrenamiento lista para pista |
 | `/scouting-baloncesto:microciclo <categoría> <días> <día de partido> [rival]` | Plan semanal orientado al partido |
 
@@ -40,4 +41,16 @@ Cada descripción indica también cuándo **no** activarse, para que no se pisen
 
 ```
 python3 plugins/scouting-baloncesto/scripts/quintetos.py plugins/scouting-baloncesto/scripts/ejemplos/ualbany-cornell-2024-11-23.json
+```
+
+## PDFs (A4 y móvil)
+
+`scripts/a_pdf.py` convierte el cuerpo HTML de un informe en PDF usando Chrome, Chromium o Edge sin ventana (si no lo encuentra, indica la ruta en `BASKTIQ_CHROME`). Estilo "autopsia": portada azul marino y oro, títulos en Playfair Display (se descarga de Google Fonts; sin conexión se usa una serif del sistema), cabecera y "página X / Y".
+
+- `scripts/plantillas/`: `base.css` (componentes), `a4.css` (imprimir) y `movil.css` (100 × 200 mm, letra grande). Con `.solo-a4` / `.solo-movil` un mismo contenido sirve para los dos formatos.
+- `scripts/graficos.py`: gráficos SVG sin dependencias (`barras`, `cascada`, `evolucion`, `barras_h`, `on_off`) y **pizarras de media pista FIBA** (`pizarra`, `leyenda_pizarra`) con jugadores, defensores, balón, conos y flechas de movimiento, pase, bote, bloqueo y tiro. Cada gráfico se dibuja a la medida de cada formato.
+- Ejemplos: `scripts/ejemplos/informe-ualbany-cornell.html` (informe de partido) y `scripts/ejemplos/sesion-rebote-ofensivo.html` (sesión con pizarras).
+
+```
+python3 plugins/scouting-baloncesto/scripts/a_pdf.py plugins/scouting-baloncesto/scripts/ejemplos/informe-ualbany-cornell.html --salida informes --cabecera "Anatomía de un 47–54 · Cornell – UAlbany" --autor "Nino Conde"
 ```
