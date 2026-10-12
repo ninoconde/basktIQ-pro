@@ -1,0 +1,5 @@
+opencv-python-headless>=4.9
+onnxruntime>=1.17
+supervision>=0.25,<0.31   # ByteTrack desaparece en la 0.31
+numpy>=1.26
+scikit-learn>=1.4

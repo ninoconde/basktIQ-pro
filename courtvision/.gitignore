@@ -1,0 +1,8 @@
+# Modelos, vídeos y resultados: nunca al repositorio (pueden contener imágenes de jugadoras y jugadores)
+*.onnx
+*.mp4
+*.mov
+*.avi
+*.mkv
+salida*/
+venv/
