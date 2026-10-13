@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CourtVision V0.1 (prueba técnica): vídeo de cámara fija -> jugadores, balón, trayectorias y métricas.
+"""CourtVision V0.2 (prueba técnica): vídeo -> jugadores, balón, trayectorias y métricas.
 
 Uso:
   python courtvision.py video.mp4 --config config.json --salida carpeta [--fps 10] [--inicio 0] [--duracion 600]
@@ -7,7 +7,9 @@ Uso:
 
 config.json:
   {"pista": "fiba" | "ncaa",
-   "calibracion": [[x_px, y_px, "esquina_si"], ...]   # 4+ puntos; nombres en PUNTOS_PISTA
+   "camara": "fija" | "movil",                         # movil: la cámara gira o hace zoom siguiendo el juego
+   "calibracion": [[x_px, y_px, "esquina_ii"], ...]   # 4+ puntos del primer fotograma; nombres en puntos_pista()
+   "recalibraciones": [{"t": 95.0, "calibracion": [...]}],  # opcional (cámara móvil): corrige la deriva
    "colores": {"A": [b, g, r], "B": [b, g, r]}         # opcional: color de camiseta de cada equipo
    "excluir_dorsales": []}                             # reservado para la revisión de identidades
 
@@ -28,16 +30,25 @@ from sklearn.cluster import KMeans
 AQUI = os.path.dirname(os.path.abspath(__file__))
 warnings.filterwarnings("ignore", message=".*ByteTrack.*", category=FutureWarning)
 PISTAS = {"fiba": (28.0, 15.0), "ncaa": (28.65, 15.24)}  # largo x ancho en metros (NCAA/NJCAA: 94 x 50 pies)
+ZONA = {"fiba": (4.9, 5.8), "ncaa": (3.66, 5.79)}         # ancho de la zona y distancia del tiro libre al fondo (m)
 V_MAX = 9.0  # m/s: por encima es un salto de identidad, no una carrera
 
 
 def puntos_pista(pista):
     L, A = PISTAS[pista]
     # x a lo largo (0 = fondo izquierdo), y a lo ancho (0 = banda de abajo en la imagen, la más cercana a la cámara)
-    return {
+    z, tl = ZONA[pista]
+    pts = {
         "esquina_ii": (0, 0), "esquina_id": (0, A), "esquina_di": (L, 0), "esquina_dd": (L, A),
         "medio_i": (L / 2, 0), "medio_d": (L / 2, A), "centro": (L / 2, A / 2),
+        "circulo_abajo": (L / 2, A / 2 - 1.8), "circulo_arriba": (L / 2, A / 2 + 1.8),
     }
+    # zona: «zona_i_fondo_abajo» = esquina de la zona izquierda en la línea de fondo, lado cercano a la cámara
+    for lado, x0, s in (("i", 0, 1), ("d", L, -1)):
+        for nombre, y in (("abajo", A / 2 - z / 2), ("arriba", A / 2 + z / 2)):
+            pts[f"zona_{lado}_fondo_{nombre}"] = (x0, y)
+            pts[f"zona_{lado}_tl_{nombre}"] = (x0 + s * tl, y)
+    return pts
 
 
 # ---------------- Detector YOLOX (ONNX oficial, salida sin decodificar)
@@ -89,6 +100,73 @@ def a_pista(H, pts):
     return cv2.perspectiveTransform(pts.reshape(-1, 1, 2).astype(np.float32), H).reshape(-1, 2)
 
 
+class Camara:
+    """Mantiene la homografía imagen -> pista. Con cámara móvil, la arrastra de un fotograma al
+    siguiente con el movimiento del suelo (ORB + RANSAC, sin jugadores) y la corrige con recalibraciones."""
+
+    def __init__(self, cfg, ref):
+        self.ref, self.movil = ref, cfg.get("camara", "fija") == "movil"
+        self.H = self._de_puntos(cfg["calibracion"])
+        self.recal = sorted(cfg.get("recalibraciones", []), key=lambda r: r["t"])
+        self.orb = cv2.ORB_create(1500)
+        self.previo = None
+        self.perdidos = 0
+
+    def _de_puntos(self, cal):
+        img = np.array([p[:2] for p in cal], np.float32)
+        pis = np.array([self.ref[p[2]] for p in cal], np.float32)
+        H, _ = cv2.findHomography(img, pis)
+        return H
+
+    def actualizar(self, img, t, cajas, L, A):
+        """Devuelve True si la calibración de este fotograma es fiable."""
+        gris = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        if self.recal and t >= self.recal[0]["t"] - 1e-6:
+            self.H = self._de_puntos(self.recal.pop(0)["calibracion"])
+            self.previo = None
+        fiable = True
+        if self.movil and self.previo is not None:
+            g_prev, m_prev = self.previo
+            kp1, d1 = self.orb.detectAndCompute(g_prev, m_prev)
+            kp2, d2 = self.orb.detectAndCompute(gris, self._mascara(gris.shape, cajas, L, A))
+            fiable = False
+            if d1 is not None and d2 is not None and len(kp1) >= 20 and len(kp2) >= 20:
+                pares = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True).match(d1, d2)
+                if len(pares) >= 20:
+                    a = np.float32([kp1[m.queryIdx].pt for m in pares])
+                    b = np.float32([kp2[m.trainIdx].pt for m in pares])
+                    G, inl = cv2.findHomography(a, b, cv2.RANSAC, 3.0)
+                    if G is not None and inl.sum() >= 15:
+                        self.H = self.H @ np.linalg.inv(G)  # pista <- previo <- actual
+                        fiable = True
+            if not fiable:
+                self.perdidos += 1
+        self.previo = (gris, self._mascara(gris.shape, cajas, L, A))
+        return fiable
+
+    def _mascara(self, forma, cajas, L, A):
+        """Solo el suelo de la pista (con 1 m de margen), sin jugadores: el público y los rótulos se mueven distinto."""
+        m = np.zeros(forma, np.uint8)
+        esquinas = np.float32([[-1, -1], [-1, A + 1], [L + 1, A + 1], [L + 1, -1]]).reshape(-1, 1, 2)
+        poli = cv2.perspectiveTransform(esquinas, np.linalg.inv(self.H)).reshape(-1, 2)
+        cv2.fillPoly(m, [poli.astype(np.int32)], 255)
+        for x0, y0, x1, y1 in np.asarray(cajas).reshape(-1, 4).astype(int):
+            cv2.rectangle(m, (x0 - 4, y0 - 4), (x1 + 4, y1 + 4), 0, -1)
+        return m
+
+    def dibujar_lineas(self, img, pista):
+        """Superpone las líneas de la pista según la calibración actual: si no casan, la calibración ha derivado."""
+        L, A = PISTAS[pista]
+        Hi = np.linalg.inv(self.H)
+        def linea(pts):
+            q = cv2.perspectiveTransform(np.float32(pts).reshape(-1, 1, 2), Hi).reshape(-1, 2)
+            cv2.polylines(img, [q.astype(np.int32)], False, (255, 0, 255), 1)
+        linea([[0, 0], [0, A], [L, A], [L, 0], [0, 0]])
+        linea([[L / 2, 0], [L / 2, A]])
+        ang = np.linspace(0, 2 * np.pi, 40)
+        linea(np.stack([L / 2 + 1.8 * np.cos(ang), A / 2 + 1.8 * np.sin(ang)], 1))
+
+
 def color_camiseta(img, caja):
     x0, y0, x1, y1 = caja.astype(int)
     h = y1 - y0
@@ -119,10 +197,7 @@ def dibujar_pista(pista, escala=30, margen=40):
 def procesar(video, cfg, salida, fps_obj=10, inicio=0, duracion=None, modelo=None, detector=None):
     os.makedirs(salida, exist_ok=True)
     pista = cfg.get("pista", "fiba")
-    ref = puntos_pista(pista)
-    img_pts = np.array([p[:2] for p in cfg["calibracion"]], np.float32)
-    pista_pts = np.array([ref[p[2]] for p in cfg["calibracion"]], np.float32)
-    H, _ = cv2.findHomography(img_pts, pista_pts)
+    camara = Camara(cfg, puntos_pista(pista))
     L, A = PISTAS[pista]
 
     cap = cv2.VideoCapture(video)
@@ -138,7 +213,7 @@ def procesar(video, cfg, salida, fps_obj=10, inicio=0, duracion=None, modelo=Non
     escritor = cv2.VideoWriter(os.path.join(salida, "superpuesto.mp4"), cv2.VideoWriter_fourcc(*"mp4v"), fps_obj, (ancho, alto))
 
     filas, balon, colores, n_frames, k = [], [], {}, 0, 0
-    rastro = {}
+    rastro, no_fiables = {}, 0
     while True:
         ok, img = cap.read()
         if not ok:
@@ -152,6 +227,9 @@ def procesar(video, cfg, salida, fps_obj=10, inicio=0, duracion=None, modelo=Non
         n_frames += 1
         r = det(img, k - 1)
         cajas, conf = r[Detector.PERSONA]
+        if not camara.actualizar(img, t, cajas, L, A):
+            no_fiables += 1
+        H = camara.H
         # solo personas con los pies dentro de la pista (+1 m): fuera quedan banquillo y público
         if len(cajas):
             pc = a_pista(H, pies(cajas))
@@ -166,10 +244,11 @@ def procesar(video, cfg, salida, fps_obj=10, inicio=0, duracion=None, modelo=Non
             col = color_camiseta(img, caja)
             if col is not None:
                 colores.setdefault(int(tid), []).append(col)
-            rastro.setdefault(int(tid), []).append(((caja[0] + caja[2]) / 2, caja[3]))
+            rastro.setdefault(int(tid), []).append((x, y))  # en metros: se reproyecta con la cámara actual
             cv2.rectangle(img, tuple(caja[:2].astype(int)), tuple(caja[2:].astype(int)), (0, 200, 255), 2)
             cv2.putText(img, str(tid), (int(caja[0]), int(caja[1]) - 4), cv2.FONT_HERSHEY_SIMPLEX, .6, (0, 200, 255), 2)
-            pts = np.array(rastro[int(tid)][-int(2 * fps_obj):], np.int32)
+            q = np.float32(rastro[int(tid)][-int(2 * fps_obj):]).reshape(-1, 1, 2)
+            pts = cv2.perspectiveTransform(q, np.linalg.inv(H)).reshape(-1, 2).astype(np.int32)
             cv2.polylines(img, [pts], False, (0, 200, 255), 1)
         bc, bconf = r[Detector.BALON]
         if len(bc):
@@ -177,12 +256,15 @@ def procesar(video, cfg, salida, fps_obj=10, inicio=0, duracion=None, modelo=Non
             cx, cy = (b[0] + b[2]) / 2, (b[1] + b[3]) / 2
             balon.append((n_frames, round(t, 2), float(cx), float(cy), float(bconf.max())))
             cv2.circle(img, (int(cx), int(cy)), 9, (0, 0, 255), 2)
-        for (x, y) in img_pts:
-            cv2.drawMarker(img, (int(x), int(y)), (255, 0, 255), cv2.MARKER_CROSS, 14, 2)
+        camara.dibujar_lineas(img, pista)
         escritor.write(img)
     escritor.release()
     cap.release()
-    return analizar(filas, balon, colores, n_frames, dt, cfg, salida, pista)
+    calidad, metricas = analizar(filas, balon, colores, n_frames, dt, cfg, salida, pista)
+    calidad["camara"] = cfg.get("camara", "fija")
+    calidad["fotogramas_sin_calibracion_fiable"] = no_fiables
+    json.dump(dict(calidad=calidad, jugadores=metricas), open(os.path.join(salida, "metricas.json"), "w"), ensure_ascii=False, indent=1)
+    return calidad, metricas
 
 
 def asignar_equipos(colores, cfg):
@@ -198,9 +280,46 @@ def asignar_equipos(colores, cfg):
     return {t: "AB"[l] for t, l in zip(ids, km.labels_)}
 
 
+def unir_tramos(filas, equipos, hueco_max=8.0, v_max=7.0, holgura=1.5, margen=2.0):
+    """Une identidades que se cortan (jugador que sale de plano o se tapa) cuando hay un único candidato
+    claro: mismo equipo, el tramo anterior ya terminó y la distancia es alcanzable corriendo (v_max)."""
+    tramos = {}
+    for f, t, tid, x, y in filas:
+        tr = tramos.setdefault(tid, dict(t0=t, t1=t, p0=(x, y), p1=(x, y)))
+        if t < tr["t0"]:
+            tr["t0"], tr["p0"] = t, (x, y)
+        if t > tr["t1"]:
+            tr["t1"], tr["p1"] = t, (x, y)
+    cadenas = []          # [id_final, último tramo]
+    destino = {}
+    for tid in sorted(tramos, key=lambda k: tramos[k]["t0"]):
+        tr, eq = tramos[tid], equipos.get(tid, "?")
+        cand = []
+        for c in cadenas:
+            prev = tramos[c[1]]
+            hueco = tr["t0"] - prev["t1"]
+            if eq == "?" or equipos.get(c[1], "?") != eq or not (0 < hueco <= hueco_max):
+                continue
+            d = float(np.hypot(tr["p0"][0] - prev["p1"][0], tr["p0"][1] - prev["p1"][1]))
+            if d <= v_max * hueco + holgura:
+                cand.append((d / (hueco + 1e-6) + d * 0.1, c))
+        cand.sort(key=lambda z: z[0])
+        if cand and (len(cand) == 1 or cand[1][0] >= margen * cand[0][0] + 0.5):
+            cand[0][1][1] = tid
+            destino[tid] = cand[0][1][0]
+        else:
+            cadenas.append([tid, tid])
+            destino[tid] = tid
+    return [(f, t, destino[tid], x, y) for f, t, tid, x, y in filas], destino
+
+
 def analizar(filas, balon, colores, n_frames, dt, cfg, salida, pista):
     L, A = PISTAS[pista]
     equipos = asignar_equipos(colores, cfg)
+    ids_seguidor = len({r[2] for r in filas})
+    if cfg.get("unir_tramos", True):
+        filas, destino = unir_tramos(filas, equipos)
+        equipos = {destino[t]: e for t, e in equipos.items()}
     por_id = {}
     for f, t, tid, x, y in filas:
         por_id.setdefault(tid, []).append((f, t, x, y))
@@ -257,7 +376,7 @@ def analizar(filas, balon, colores, n_frames, dt, cfg, salida, pista):
     largos = [m["segundos"] for m in metricas]
     calidad = dict(
         fotogramas=n_frames, segundos_analizados=round(n_frames * dt, 1),
-        ids_distintos=len(metricas),
+        ids_distintos=len(metricas), ids_antes_de_unir_tramos=ids_seguidor,
         ids_esperados="10 en pista (5 + 5); cada id de más es una identidad partida o un falso positivo",
         jugadores_medios_por_fotograma=round(len(filas) / n_frames, 2) if n_frames else 0,
         duracion_media_id_s=round(float(np.mean(largos)), 1) if largos else 0,
